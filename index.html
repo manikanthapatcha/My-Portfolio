@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en" class="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <!-- Primary Meta Tags -->
+    <title>Sai Ganesh Patcha | Full-Stack Developer & AI Engineer</title>
+    <meta name="title" content="Sai Ganesh Patcha | Full-Stack Developer & AI Engineer" />
+    <meta name="description" content="Portfolio of Sai Ganesh Patcha — Computer Science & Data Science engineer and MERN Stack Developer Intern at PurpleLane. Specializing in Generative AI, RAG, LangChain, LangGraph, and full-stack web applications." />
+    <meta name="keywords" content="Sai Ganesh Patcha, Software Engineer, Full-Stack Developer, Generative AI, LangChain, LangGraph, RAG, MERN Stack, React, Node.js, Python, Deep Learning, Andhra Pradesh, Portfolio" />
+    <meta name="author" content="Sai Ganesh Patcha" />
+    <meta name="theme-color" content="#0b0d10" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://saiganesh.dev" />
+    <meta property="og:title" content="Sai Ganesh Patcha | Full-Stack Developer & AI Engineer" />
+    <meta property="og:description" content="Building intelligent products with code, data, and AI. Explore full-stack and Generative AI projects including ShopMate, LegalGenie, and NEPTUNE-CXR." />
+    <meta property="og:image" content="/og-image.png" />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:title" content="Sai Ganesh Patcha | Full-Stack Developer & AI Engineer" />
+    <meta property="twitter:description" content="Building intelligent products with code, data, and AI. Explore full-stack and Generative AI projects." />
+    
+    <!-- Google Fonts: Plus Jakarta Sans & JetBrains Mono -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Anti-FOUC Theme Script -->
+    <script>
+      (function() {
+        try {
+          const stored = localStorage.getItem('theme');
+          const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          if (stored === 'light') {
+            document.documentElement.classList.remove('dark');
+            document.documentElement.classList.add('light');
+          } else {
+            document.documentElement.classList.add('dark');
+            document.documentElement.classList.remove('light');
+          }
+        } catch (e) {}
+      })();
+    </script>
+  </head>
+  <body class="bg-[#0b0d10] text-slate-100 dark:bg-[#0b0d10] dark:text-slate-100 antialiased selection:bg-lime-400/30 selection:text-lime-300 transition-colors duration-300">
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>
