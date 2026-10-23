@@ -13,7 +13,7 @@ export const personalInfo = {
   badge: "Available Q3/Q4 2026",
   bio: "I'm a Computer Science & Data Science undergraduate and MERN Stack Developer Intern at PurpleLane. I specialize in designing and shipping production web applications that bridge intuitive frontend user interfaces with robust backend architectures and state-of-the-art Generative AI workflows like RAG, vector embeddings, and autonomous agent chains.",
   stats: [
-    { label: "Substantial Projects", value: "04" },
+    { label: "Substantial Projects", value: "05" },
     { label: "Production Stack", value: "MERN + AI" },
     { label: "B.Tech CGPA", value: "8.34/10" },
     { label: "Internship", value: "PurpleLane" },
@@ -164,6 +164,42 @@ export const projects = [
     isPrototype: false,
     featured: false,
   },
+  {
+    id: "student-intelligence",
+    title: "Student Intelligence",
+    tagline: "AI-Powered Student Assistant (Local LLM)",
+    category: "Generative AI",
+    badge: "Local LLM · Ollama",
+    summary:
+      "A developer-grade study intelligence platform that harnesses a locally hosted Llama 3.2 model via Ollama to deliver conversational academic assistance, engineered study modes, and zero-cloud private inference.",
+    technologies: [
+      "React",
+      "Vite",
+      "Node.js",
+      "Express",
+      "Ollama",
+      "Llama 3.2",
+      "JavaScript",
+      "REST APIs",
+    ],
+    highlights: [
+      "Integrated locally running Llama 3.2 model using Ollama for private, zero-latency inference",
+      "Custom Express service layer communicating directly with Ollama REST APIs (/api/chat, /api/tags)",
+      "Proactive model detection, health monitoring, and connection fallback handling",
+      "Engineered study modes: Conceptual Breakdown, Technical Analysis, and University Exam Answers",
+      "Zero-cloud architecture ensuring complete student data privacy on local hardware",
+    ],
+    architecture:
+      "Two-tier client-server architecture: A Vite + React frontend connects over RESTful endpoints to an Express.js backend. The server coordinates with an Ollama REST engine daemon (http://127.0.0.1:11434) running Llama 3.2 locally, managing prompt templates, stream processing, and server health checks.",
+    challenges:
+      "Ensuring seamless conversational UX during local engine cold starts and handling hardware constraints; addressed by developing dedicated health probes, dynamic model detection, and structured fallback notifications on the client.",
+    problemSolved:
+      "Provides students with an accessible, high-performance AI assistant for academic support while enabling local language-model execution without depending on external cloud API subscriptions.",
+    githubUrl: "https://github.com/manikanthapatcha/StudentIntelligence",
+    liveDemoUrl: null,
+    isPrototype: false,
+    featured: true,
+  },
 ];
 
 export const skillCategories = [
@@ -178,6 +214,7 @@ export const skillCategories = [
       { name: "LangChain", level: "Advanced", icon: "Link" },
       { name: "LangGraph", level: "Proficient", icon: "GitFork" },
       { name: "RAG Systems", level: "Advanced", icon: "FileSearch" },
+      { name: "Ollama (Llama 3.2)", level: "Advanced", icon: "Bot" },
       { name: "Google Gemini API", level: "Advanced", icon: "Sparkles" },
       { name: "Pinecone", level: "Proficient", icon: "Database" },
       { name: "LLMs & Agents", level: "Advanced", icon: "Bot" },

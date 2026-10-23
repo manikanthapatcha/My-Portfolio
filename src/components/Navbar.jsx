@@ -43,7 +43,7 @@ export default function Navbar({ onOpenResume }) {
     { name: 'Skills', href: '/#skills' },
     { name: 'Experience', href: '/#experience' },
     { name: 'About', href: '/#about' },
-    { name: 'Contact', href: '/#contact' },
+    { name: 'Contact', href: '/contact' },
   ];
 
   return (

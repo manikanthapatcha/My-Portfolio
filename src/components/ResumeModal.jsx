@@ -64,6 +64,7 @@ SSC: St. Ann's E.M. School (2021) | 92%
 
 PROJECTS
 - ShopMate: AI-Powered E-Commerce Platform (React, Vite, Node.js, Express, MongoDB, Pinecone, Gemini, LangChain, LangGraph)
+- Student Intelligence: AI-Powered Student Assistant (React, Vite, Node.js, Express, Ollama, Llama 3.2)
 - LegalGenie: AI-Powered Legal Research Assistant (React, Node.js, Express, MongoDB, LangChain, ChromaDB, Gemini)
 - NEPTUNE-CXR: Chest X-Ray Disease Probability Detection (PyTorch, DenseNet121, FastAPI, React, Node.js, Grad-CAM)
 - Order Management System: Full-Stack Inventory & Order Tracking (React, Node.js, Express, MongoDB, Material UI)
@@ -72,7 +73,7 @@ SKILLS
 Frontend: React.js, HTML5, CSS3, Tailwind CSS, Vite, JavaScript
 Backend: Node.js, Express.js, REST APIs, Python, FastAPI
 Databases: MongoDB, MongoDB Native Driver, PostgreSQL, ChromaDB, Pinecone
-AI & ML: LangChain, LangGraph, RAG, LLMs, AI Agents, Prompt Engineering, Gemini API, PyTorch
+AI & ML: LangChain, LangGraph, RAG, Ollama, Llama 3.2, LLMs, AI Agents, Prompt Engineering, Gemini API, PyTorch
 Dev Tools: Git, GitHub, Postman, VS Code, Docker, Vercel, Render
 
 CERTIFICATIONS & ACHIEVEMENTS

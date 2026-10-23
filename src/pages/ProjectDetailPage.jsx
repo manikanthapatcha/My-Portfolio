@@ -160,6 +160,17 @@ export default function ProjectDetailPage() {
                   </div>
                 ))}
               </div>
+
+              {project.problemSolved && (
+                <div className="mt-6 p-4 rounded-xl bg-black/30 dark:bg-[#0b0d10]/40 light:bg-slate-50 border border-lime-400/20 space-y-1.5">
+                  <div className="text-[11px] font-mono uppercase tracking-wider text-lime-400 font-semibold">
+                    Problem It Solves
+                  </div>
+                  <p className="text-xs text-slate-300 dark:text-slate-300 light:text-slate-700 leading-relaxed">
+                    {project.problemSolved}
+                  </p>
+                </div>
+              )}
             </div>
           )}
 

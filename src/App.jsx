@@ -6,6 +6,7 @@ import Footer from './components/Footer';
 import ResumeModal from './components/ResumeModal';
 import HomePage from './pages/HomePage';
 import ProjectDetailPage from './pages/ProjectDetailPage';
+import ContactPage from './pages/ContactPage';
 import NotFoundPage from './pages/NotFoundPage';
 
 export default function App() {
@@ -33,6 +34,7 @@ export default function App() {
         <div className="flex-1">
           <Routes>
             <Route path="/" element={<HomePage onOpenResume={() => setResumeOpen(true)} />} />
+            <Route path="/contact" element={<ContactPage />} />
             <Route path="/projects/:id" element={<ProjectDetailPage />} />
             <Route path="*" element={<NotFoundPage />} />
           </Routes>
