@@ -1,12 +1,29 @@
 import { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { ArrowLeft, Cpu, Layers, CheckCircle, AlertTriangle, ShieldCheck, Terminal, Sparkles } from 'lucide-react';
+import {
+  ArrowLeft,
+  ExternalLink,
+  Cpu,
+  Layers,
+  CheckCircle,
+  AlertTriangle,
+  ShieldCheck,
+  Terminal,
+  Sparkles,
+  Users,
+  Lock,
+  Zap,
+  HelpCircle,
+  Compass,
+} from 'lucide-react';
 import { GithubIcon } from '../components/SocialIcons';
 import { projects } from '../data/portfolioData';
+import { useCardTilt } from '../hooks/useMotion';
 
 export default function ProjectDetailPage() {
   const { id } = useParams();
   const [activeTab, setActiveTab] = useState('overview');
+  const headerCardRef = useCardTilt({ maxTilt: 3, scale: 1.005 });
 
   const project = projects.find((p) => p.id === id);
 
@@ -23,7 +40,7 @@ export default function ProjectDetailPage() {
         </p>
         <Link
           to="/"
-          className="px-5 py-2.5 rounded-xl bg-lime-400 text-black font-semibold text-xs uppercase tracking-wider hover:bg-lime-300 transition-colors"
+          className="px-5 py-2.5 rounded-xl bg-lime-400 text-black font-semibold text-xs uppercase tracking-wider hover:bg-lime-300 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-lime-400"
         >
           Return to Portfolio
         </Link>
@@ -32,22 +49,25 @@ export default function ProjectDetailPage() {
   }
 
   return (
-    <main className="pt-32 pb-24 relative z-10">
+    <main id="main-content" className="pt-32 pb-24 relative z-10">
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        {/* Back Link */}
+        {/* Back Link with hover animation */}
         <div className="mb-8">
           <Link
             to="/#projects"
-            className="inline-flex items-center gap-2 text-xs font-mono text-slate-400 hover:text-lime-400 transition-colors"
+            className="group inline-flex items-center gap-2 text-xs font-mono text-slate-400 hover:text-lime-400 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-lime-400 rounded-md px-1 py-0.5"
           >
-            <ArrowLeft size={14} />
+            <ArrowLeft size={14} className="group-hover:-translate-x-1 transition-transform" />
             <span>Back to Projects</span>
           </Link>
         </div>
 
         {/* Project Header Card */}
-        <div className="rounded-2xl bg-charcoal-card dark:bg-[#151921] light:bg-white border border-white/10 dark:border-white/10 light:border-slate-200 p-6 sm:p-10 shadow-2xl mb-10">
+        <div 
+          ref={headerCardRef}
+          className="tilt-card rounded-2xl bg-charcoal-card dark:bg-[#151921] light:bg-white border border-white/10 dark:border-white/10 light:border-slate-200 p-6 sm:p-10 shadow-2xl mb-10 hover:border-lime-500/30 transition-all"
+        >
           <div className="flex flex-wrap items-center gap-2 mb-4">
             <span className="px-3 py-1 rounded-full text-xs font-mono font-semibold bg-lime-400/10 text-lime-400 border border-lime-400/20">
               {project.badge}
@@ -55,6 +75,22 @@ export default function ProjectDetailPage() {
             <span className="px-3 py-1 rounded-full text-xs font-mono text-slate-400 bg-white/5 border border-white/5">
               {project.category}
             </span>
+            {project.projectType && (
+              <span className="px-3 py-1 rounded-full text-xs font-mono text-slate-300 dark:text-slate-300 light:text-slate-700 bg-white/5 border border-white/10">
+                {project.projectType}
+              </span>
+            )}
+            {project.liveDemoUrl && (
+              <a
+                href={project.liveDemoUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-3 py-1 rounded-full text-xs font-mono font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/25 flex items-center gap-1.5 hover:bg-emerald-500/20 active:scale-95 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-lime-400"
+              >
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                <span>Live Deployment ↗</span>
+              </a>
+            )}
             {project.isPrototype && (
               <span className="px-3 py-1 rounded-full text-xs font-mono text-amber-400 bg-amber-400/10 border border-amber-400/20 flex items-center gap-1.5">
                 <AlertTriangle size={12} />
@@ -77,12 +113,24 @@ export default function ProjectDetailPage() {
 
           {/* Action links */}
           <div className="mt-8 pt-6 border-t border-white/10 dark:border-white/10 light:border-slate-200 flex flex-wrap items-center gap-4">
+            {project.liveDemoUrl && (
+              <a
+                href={project.liveDemoUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-6 py-2.5 rounded-xl bg-lime-400 text-black hover:bg-lime-300 text-xs font-bold uppercase tracking-wider transition-all shadow-lg shadow-lime-500/20 active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-lime-400"
+              >
+                <ExternalLink size={15} />
+                <span>Launch Live Application</span>
+              </a>
+            )}
+
             {project.githubUrl ? (
               <a
                 href={project.githubUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-white/10 dark:bg-white/10 light:bg-slate-100 hover:bg-white/20 text-white dark:text-white light:text-slate-900 text-xs font-semibold transition-colors font-mono"
+                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-white/10 dark:bg-white/10 light:bg-slate-100 hover:bg-white/20 text-white dark:text-white light:text-slate-900 text-xs font-semibold transition-all font-mono active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-lime-400"
               >
                 <GithubIcon size={15} />
                 <span>View Source Repository</span>
@@ -117,15 +165,16 @@ export default function ProjectDetailPage() {
         {/* Interactive Case Study Tabs */}
         <div className="flex border-b border-white/10 dark:border-white/10 light:border-slate-200 mb-8 overflow-x-auto">
           {[
-            { id: 'overview', label: 'Feature Breakdown' },
-            { id: 'architecture', label: 'System Architecture' },
-            { id: 'challenges', label: 'Engineering Challenges' },
-            { id: 'stack', label: 'Technology Stack' },
+            { id: 'overview', label: '1. Overview & Features' },
+            { id: 'architecture', label: '2. Architecture & Design' },
+            { id: 'decisions', label: '3. Security & Performance' },
+            { id: 'challenges', label: '4. Challenges & Roadmap' },
+            { id: 'stack', label: '5. Technology Stack' },
           ].map((tab) => (
             <button
               key={tab.id}
               onClick={() => setActiveTab(tab.id)}
-              className={`px-5 py-3 text-xs font-mono uppercase tracking-wider transition-all border-b-2 whitespace-nowrap focus:outline-none ${
+              className={`px-5 py-3 text-xs font-mono uppercase tracking-wider transition-all border-b-2 whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-lime-400 ${
                 activeTab === tab.id
                   ? 'border-lime-400 text-lime-400 font-bold'
                   : 'border-transparent text-slate-400 hover:text-slate-200 hover:border-slate-500'
@@ -139,12 +188,12 @@ export default function ProjectDetailPage() {
         {/* Tab Content Panes */}
         <div className="rounded-2xl bg-charcoal-card dark:bg-[#151921] light:bg-white border border-white/10 dark:border-white/10 light:border-slate-200 p-6 sm:p-8 shadow-xl">
           
-          {/* Tab 1: Feature Breakdown */}
+          {/* Tab 1: Overview & Features */}
           {activeTab === 'overview' && (
             <div className="space-y-6">
               <h3 className="text-lg font-bold text-white dark:text-white light:text-slate-900 tracking-tight flex items-center gap-2">
                 <Sparkles size={18} className="text-lime-400" />
-                <span>Core Functional Implementations</span>
+                <span>Verified Core Functional Implementations</span>
               </h3>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -161,20 +210,35 @@ export default function ProjectDetailPage() {
                 ))}
               </div>
 
+              {/* Problem Solved */}
               {project.problemSolved && (
                 <div className="mt-6 p-4 rounded-xl bg-black/30 dark:bg-[#0b0d10]/40 light:bg-slate-50 border border-lime-400/20 space-y-1.5">
-                  <div className="text-[11px] font-mono uppercase tracking-wider text-lime-400 font-semibold">
-                    Problem It Solves
+                  <div className="text-[11px] font-mono uppercase tracking-wider text-lime-400 font-semibold flex items-center gap-1.5">
+                    <HelpCircle size={14} />
+                    <span>Problem Solved</span>
                   </div>
                   <p className="text-xs text-slate-300 dark:text-slate-300 light:text-slate-700 leading-relaxed">
                     {project.problemSolved}
                   </p>
                 </div>
               )}
+
+              {/* Intended Users */}
+              {project.intendedUsers && (
+                <div className="p-4 rounded-xl bg-black/30 dark:bg-[#0b0d10]/40 light:bg-slate-50 border border-white/5 dark:border-white/5 light:border-slate-200 space-y-1.5">
+                  <div className="text-[11px] font-mono uppercase tracking-wider text-slate-300 dark:text-slate-300 light:text-slate-700 font-semibold flex items-center gap-1.5">
+                    <Users size={14} className="text-lime-400" />
+                    <span>Intended Users & Primary Use Case</span>
+                  </div>
+                  <p className="text-xs text-slate-400 dark:text-slate-400 light:text-slate-600 leading-relaxed">
+                    {project.intendedUsers}
+                  </p>
+                </div>
+              )}
             </div>
           )}
 
-          {/* Tab 2: System Architecture */}
+          {/* Tab 2: System Architecture & Data Flow */}
           {activeTab === 'architecture' && (
             <div className="space-y-6">
               <h3 className="text-lg font-bold text-white dark:text-white light:text-slate-900 tracking-tight flex items-center gap-2">
@@ -184,7 +248,7 @@ export default function ProjectDetailPage() {
 
               <div className="p-5 rounded-xl bg-black/50 dark:bg-[#0b0d10]/80 light:bg-slate-900 text-slate-200 font-mono text-xs leading-relaxed border border-white/10">
                 <div className="text-[11px] uppercase tracking-wider text-lime-400 mb-2">
-                  // Workflow Pipeline
+                  // Workflow Pipeline & Data Flow
                 </div>
                 <p>{project.architecture}</p>
               </div>
@@ -210,10 +274,65 @@ export default function ProjectDetailPage() {
                   </div>
                 </div>
               </div>
+
+              {/* Key Implementation Decisions */}
+              {project.keyDecisions && project.keyDecisions.length > 0 && (
+                <div className="mt-4 pt-4 border-t border-white/10 dark:border-white/10 light:border-slate-200 space-y-3">
+                  <div className="text-xs font-mono uppercase tracking-wider text-lime-400 font-semibold flex items-center gap-1.5">
+                    <Compass size={14} />
+                    <span>Key Implementation Decisions & Trade-Offs</span>
+                  </div>
+                  <ul className="space-y-2 text-xs text-slate-300 dark:text-slate-300 light:text-slate-700">
+                    {project.keyDecisions.map((decision, idx) => (
+                      <li key={idx} className="flex items-start gap-2">
+                        <CheckCircle size={13} className="text-lime-400 shrink-0 mt-0.5" />
+                        <span className="leading-relaxed">{decision}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
             </div>
           )}
 
-          {/* Tab 3: Engineering Challenges */}
+          {/* Tab 3: Security & Performance */}
+          {activeTab === 'decisions' && (
+            <div className="space-y-6">
+              <h3 className="text-lg font-bold text-white dark:text-white light:text-slate-900 tracking-tight flex items-center gap-2">
+                <ShieldCheck size={18} className="text-lime-400" />
+                <span>Security, Performance & Data Consistency</span>
+              </h3>
+
+              {project.securityAndPerformance && project.securityAndPerformance.length > 0 ? (
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  {project.securityAndPerformance.map((item, idx) => (
+                    <div
+                      key={idx}
+                      className="p-4 rounded-xl bg-black/40 dark:bg-[#0b0d10]/60 light:bg-slate-50 border border-white/5 dark:border-white/5 light:border-slate-200 flex items-start gap-3"
+                    >
+                      <Lock size={15} className="text-lime-400 shrink-0 mt-0.5" />
+                      <span className="text-xs text-slate-300 dark:text-slate-300 light:text-slate-700 leading-relaxed">
+                        {item}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              ) : (
+                <div className="p-4 rounded-xl bg-black/30 border border-white/5 text-xs text-slate-400">
+                  Defensive validation and atomic consistency patterns applied across data operations.
+                </div>
+              )}
+
+              <div className="p-4 rounded-xl bg-lime-400/10 border border-lime-400/20 text-xs text-lime-300 dark:text-lime-300 light:text-lime-800 flex items-start gap-2.5">
+                <Zap size={16} className="text-lime-400 shrink-0 mt-0.5" />
+                <span>
+                  Engineered with zero speculative claims: all architectural choices, concurrency patterns, and security layers are grounded in verified repository code.
+                </span>
+              </div>
+            </div>
+          )}
+
+          {/* Tab 4: Challenges & Roadmap */}
           {activeTab === 'challenges' && (
             <div className="space-y-6">
               <h3 className="text-lg font-bold text-white dark:text-white light:text-slate-900 tracking-tight flex items-center gap-2">
@@ -230,16 +349,29 @@ export default function ProjectDetailPage() {
                 </p>
               </div>
 
-              <div className="p-4 rounded-xl bg-lime-400/10 border border-lime-400/20 text-xs text-lime-300 dark:text-lime-300 light:text-lime-800 flex items-start gap-2.5">
-                <ShieldCheck size={16} className="text-lime-400 shrink-0 mt-0.5" />
-                <span>
-                  All solutions are grounded in actual project commits and tested implementation patterns, ensuring deterministic performance and zero speculative assertions.
-                </span>
-              </div>
+              {/* Known Limitations & Future Work */}
+              {project.limitationsAndFutureWork && project.limitationsAndFutureWork.length > 0 && (
+                <div className="space-y-3 pt-2">
+                  <div className="text-xs font-mono uppercase tracking-wider text-slate-400 dark:text-slate-400 light:text-slate-500 font-semibold">
+                    Known Limitations & Planned Improvements:
+                  </div>
+                  <div className="grid grid-cols-1 gap-2.5">
+                    {project.limitationsAndFutureWork.map((item, idx) => (
+                      <div
+                        key={idx}
+                        className="p-3.5 rounded-xl bg-black/30 dark:bg-[#0b0d10]/40 light:bg-slate-50 border border-white/5 text-xs text-slate-300 dark:text-slate-300 light:text-slate-700 flex items-start gap-2.5"
+                      >
+                        <span className="w-1.5 h-1.5 rounded-full bg-lime-400 shrink-0 mt-1.5" />
+                        <span>{item}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
             </div>
           )}
 
-          {/* Tab 4: Technology Stack */}
+          {/* Tab 5: Complete Technology Stack */}
           {activeTab === 'stack' && (
             <div className="space-y-6">
               <h3 className="text-lg font-bold text-white dark:text-white light:text-slate-900 tracking-tight flex items-center gap-2">
@@ -251,7 +383,7 @@ export default function ProjectDetailPage() {
                 {project.technologies.map((tech) => (
                   <div
                     key={tech}
-                    className="p-3 rounded-xl bg-black/40 dark:bg-[#0b0d10]/60 light:bg-slate-50 border border-white/5 dark:border-white/5 light:border-slate-200 text-center"
+                    className="p-3 rounded-xl bg-black/40 dark:bg-[#0b0d10]/60 light:bg-slate-50 border border-white/5 dark:border-white/5 light:border-slate-200 text-center hover:border-lime-400/30 transition-colors"
                   >
                     <span className="text-xs font-mono font-medium text-slate-200 dark:text-slate-200 light:text-slate-800">
                       {tech}

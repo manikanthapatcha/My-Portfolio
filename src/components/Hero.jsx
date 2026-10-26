@@ -1,70 +1,136 @@
-import { ArrowRight, Download, Mail, MapPin, Terminal, CheckCircle2 } from 'lucide-react';
+import { ArrowRight, Download, Mail, MapPin, Phone } from 'lucide-react';
 import { GithubIcon, LinkedinIcon } from './SocialIcons';
 import { personalInfo } from '../data/portfolioData';
+import { useCardTilt, useMagnetic } from '../hooks/useMotion';
+
+function HeroPortrait() {
+  const portraitRef = useCardTilt({ maxTilt: 3.5, scale: 1.01 });
+
+  return (
+    <div className="flex justify-center lg:justify-end w-full">
+      <div
+        ref={portraitRef}
+        className="tilt-card relative group w-full max-w-[290px] sm:max-w-[330px] md:max-w-[360px] lg:max-w-[380px]"
+      >
+        {/* Subtle Ambient Lime Glow */}
+        <div 
+          className="absolute -inset-3 sm:-inset-5 rounded-3xl bg-lime-400/15 dark:bg-lime-400/12 blur-2xl pointer-events-none group-hover:bg-lime-400/25 transition-all duration-700" 
+          aria-hidden="true"
+        />
+
+        {/* Softly Rounded Editorial Frame */}
+        <div className="relative rounded-3xl p-2 sm:p-2.5 bg-charcoal-card/90 dark:bg-[#151921]/90 light:bg-white/90 backdrop-blur-md border border-lime-400/40 dark:border-lime-400/40 light:border-lime-500/50 shadow-2xl overflow-hidden group-hover:border-lime-400 transition-all duration-300">
+          
+          {/* Portrait Image */}
+          <div className="relative aspect-[4/5] sm:aspect-[3/4] w-full rounded-2xl overflow-hidden bg-[#0e1217]">
+            <img
+              src="/images/profile.jpg"
+              alt="Portrait of Sai Ganesh Patcha, full-stack developer and AI engineer"
+              className="w-full h-full object-cover object-center transition-transform duration-500 group-hover:scale-[1.02]"
+              loading="eager"
+              fetchPriority="high"
+              width="380"
+              height="480"
+            />
+
+            {/* Subtle Gradient Vignette at Bottom */}
+            <div 
+              className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/15 to-transparent pointer-events-none" 
+              aria-hidden="true" 
+            />
+
+            {/* Bottom Status Overlay */}
+            <div className="absolute bottom-3 left-3 right-3 p-2.5 rounded-xl bg-black/70 dark:bg-black/75 light:bg-white/90 backdrop-blur-md border border-white/10 dark:border-white/10 light:border-slate-300 flex items-center justify-between text-xs">
+              <span className="flex items-center gap-1.5 font-mono text-[11px] text-lime-400 dark:text-lime-400 light:text-lime-600 font-semibold">
+                <span className="w-2 h-2 rounded-full bg-lime-400 animate-pulse" />
+                <span>Intern @ PurpleLane</span>
+              </span>
+              <span className="text-[10px] font-mono text-slate-300 dark:text-slate-300 light:text-slate-700">
+                B.Tech CSE (DS)
+              </span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  );
+}
 
 export default function Hero({ onOpenResume }) {
+  const exploreBtnRef = useMagnetic({ strength: 0.2, max: 4 });
+  const resumeBtnRef = useMagnetic({ strength: 0.2, max: 4 });
+  const contactBtnRef = useMagnetic({ strength: 0.2, max: 4 });
+
   return (
     <section id="overview" className="relative pt-32 pb-20 sm:pt-40 sm:pb-28 overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
-        {/* Top Status & Terminal Pill */}
-        <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-charcoal-card/90 dark:bg-[#151921]/90 light:bg-white border border-white/10 dark:border-white/10 light:border-slate-300 text-xs text-slate-300 dark:text-slate-300 light:text-slate-700 mb-8 backdrop-blur-md shadow-sm">
-          <span className="flex h-2 w-2 relative">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-lime-400 opacity-75" />
-            <span className="relative inline-flex rounded-full h-2 w-2 bg-lime-500" />
-          </span>
-          <span className="font-mono text-lime-400 dark:text-lime-400 light:text-lime-600 font-semibold">
-            {personalInfo.badge}
-          </span>
-          <span className="text-slate-600 dark:text-slate-600 light:text-slate-300">|</span>
-          <span className="flex items-center gap-1 text-slate-400 dark:text-slate-400 light:text-slate-500">
-            <MapPin size={12} />
-            {personalInfo.location}
-          </span>
-        </div>
-
         {/* Main Hero Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-          {/* Left Column: Heading and CTAs */}
-          <div className="lg:col-span-8 space-y-6">
-            <div className="space-y-3">
-              <div className="text-xs font-mono uppercase tracking-widest text-slate-400 dark:text-slate-400 light:text-slate-500 flex items-center gap-2">
-                <span className="w-6 h-px bg-lime-400" />
-                <span>Software Developer · Full-Stack & AI</span>
-              </div>
-              <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight text-white dark:text-white light:text-slate-900 leading-[1.1]">
-                Building intelligent products with{' '}
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-lime-400 via-lime-300 to-emerald-400">
-                  code, data, and AI.
-                </span>
-              </h1>
+          
+          {/* Left Column: Heading and CTAs (7 cols) */}
+          <div className="lg:col-span-7 space-y-6 text-center lg:text-left flex flex-col items-center lg:items-start">
+            
+            {/* Top Status & Location Pill */}
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-charcoal-card/90 dark:bg-[#151921]/90 light:bg-white border border-white/10 dark:border-white/10 light:border-slate-300 text-xs text-slate-300 dark:text-slate-300 light:text-slate-700 backdrop-blur-md shadow-sm transition-all hover:border-lime-400/40">
+              <span className="flex h-2 w-2 relative">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-lime-400 opacity-75" />
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-lime-500" />
+              </span>
+              <span className="font-mono text-lime-400 dark:text-lime-400 light:text-lime-600 font-semibold tracking-wide">
+                {personalInfo.badge}
+              </span>
+              <span className="text-slate-600 dark:text-slate-600 light:text-slate-300">|</span>
+              <span className="flex items-center gap-1 text-slate-400 dark:text-slate-400 light:text-slate-500">
+                <MapPin size={12} className="text-lime-400/80" />
+                {personalInfo.location}
+              </span>
             </div>
 
-            <p className="text-lg sm:text-xl text-slate-300 dark:text-slate-300 light:text-slate-600 leading-relaxed max-w-2xl font-normal">
-              {personalInfo.subheadline}
+            {/* Introduction Line */}
+            <div className="text-base sm:text-lg font-mono font-bold text-lime-400 dark:text-lime-400 light:text-lime-600 tracking-wide flex items-center gap-2">
+              <span className="hidden lg:inline-block w-5 h-px bg-lime-400" />
+              <span>Hi, I&apos;m Sai Ganesh.</span>
+            </div>
+
+            {/* Orchestrated Headline Entrance */}
+            <h1 className="text-4xl sm:text-5xl md:text-6xl font-black tracking-tight text-white dark:text-white light:text-slate-900 leading-[1.08]">
+              <span className="inline-block animate-word-1">Full-Stack Developer</span>{' '}
+              <span className="inline-block animate-word-2 text-transparent bg-clip-text bg-gradient-to-r from-lime-400 via-lime-300 to-emerald-400">
+                & AI Engineer
+              </span>
+            </h1>
+
+            {/* Subheadline Description */}
+            <p className="text-base sm:text-lg text-slate-300 dark:text-slate-300 light:text-slate-600 leading-relaxed max-w-xl font-normal">
+              Building intelligent applications and practical AI-powered systems.
             </p>
 
-            {/* CTAs */}
-            <div className="pt-2 flex flex-wrap items-center gap-4">
+            {/* Magnetic CTAs */}
+            <div className="pt-2 flex flex-wrap items-center justify-center lg:justify-start gap-4">
               <a
+                ref={exploreBtnRef}
                 href="#projects"
-                className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl bg-lime-400 text-black font-bold text-sm hover:bg-lime-300 active:scale-95 transition-all duration-200 shadow-lg shadow-lime-500/20 focus:outline-none focus-visible:ring-2 focus-visible:ring-lime-400"
+                className="magnetic-btn inline-flex items-center gap-2 px-6 py-3.5 rounded-xl bg-lime-400 text-black font-bold text-sm hover:bg-lime-300 active:scale-95 transition-all shadow-lg shadow-lime-500/20 focus:outline-none focus-visible:ring-2 focus-visible:ring-lime-400"
               >
-                <span>Explore Projects</span>
+                <span>Explore Projects ↗</span>
                 <ArrowRight size={16} />
               </a>
 
               <button
+                ref={resumeBtnRef}
                 onClick={onOpenResume}
-                className="inline-flex items-center gap-2 px-5 py-3.5 rounded-xl bg-charcoal-card dark:bg-[#151921] light:bg-white text-slate-200 dark:text-slate-200 light:text-slate-800 border border-white/10 dark:border-white/10 light:border-slate-300 font-semibold text-sm hover:border-lime-400/40 hover:text-lime-400 active:scale-95 transition-all duration-200 shadow-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-lime-400"
+                className="magnetic-btn inline-flex items-center gap-2 px-5 py-3.5 rounded-xl bg-charcoal-card dark:bg-[#151921] light:bg-white text-slate-200 dark:text-slate-200 light:text-slate-800 border border-white/10 dark:border-white/10 light:border-slate-300 font-semibold text-sm hover:border-lime-400/50 hover:text-lime-400 active:scale-95 transition-all shadow-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-lime-400"
               >
                 <Download size={16} />
-                <span>Download Resume</span>
+                <span>View Resume</span>
               </button>
 
               <a
+                ref={contactBtnRef}
                 href="#contact"
-                className="inline-flex items-center gap-2 px-5 py-3.5 rounded-xl text-slate-300 dark:text-slate-300 light:text-slate-700 hover:text-white dark:hover:text-white light:hover:text-black font-medium text-sm transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-lime-400"
+                className="magnetic-btn inline-flex items-center gap-2 px-5 py-3.5 rounded-xl text-slate-300 dark:text-slate-300 light:text-slate-700 hover:text-white dark:hover:text-white light:hover:text-black font-medium text-sm transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-lime-400"
               >
                 <Mail size={16} />
                 <span>Contact Me</span>
@@ -72,98 +138,44 @@ export default function Hero({ onOpenResume }) {
             </div>
 
             {/* Verified External Social Links */}
-            <div className="pt-4 flex items-center gap-6 text-sm text-slate-400 dark:text-slate-400 light:text-slate-500">
-              <span className="text-xs uppercase font-mono tracking-wider text-slate-500">Profiles:</span>
+            <div className="pt-2 flex flex-wrap items-center justify-center lg:justify-start gap-4 sm:gap-6 text-xs text-slate-400 dark:text-slate-400 light:text-slate-500 font-mono">
+              <span className="text-[11px] uppercase tracking-wider text-slate-500">Connect:</span>
               <a
                 href={personalInfo.github}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 hover:text-lime-400 transition-colors"
+                className="inline-flex items-center gap-1.5 hover:text-lime-400 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-lime-400 rounded-md px-1 py-0.5"
                 aria-label="GitHub Profile"
               >
-                <GithubIcon size={16} />
-                <span className="font-mono text-xs">github.com/manikanthapatcha</span>
+                <GithubIcon size={15} />
+                <span>manikanthapatcha</span>
               </a>
               <a
                 href={personalInfo.linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 hover:text-lime-400 transition-colors"
+                className="inline-flex items-center gap-1.5 hover:text-lime-400 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-lime-400 rounded-md px-1 py-0.5"
                 aria-label="LinkedIn Profile"
               >
-                <LinkedinIcon size={16} />
-                <span className="font-mono text-xs">LinkedIn</span>
+                <LinkedinIcon size={15} />
+                <span>sai-ganesh-patcha</span>
               </a>
+              {personalInfo.phone && (
+                <a
+                  href={`tel:${personalInfo.phone}`}
+                  className="inline-flex items-center gap-1.5 hover:text-lime-400 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-lime-400 rounded-md px-1 py-0.5"
+                  aria-label="Phone"
+                >
+                  <Phone size={13} className="text-lime-400/80" />
+                  <span>{personalInfo.phone}</span>
+                </a>
+              )}
             </div>
           </div>
 
-          {/* Right Column: Editorial Desk Card */}
-          <div className="lg:col-span-4">
-            <div className="rounded-2xl bg-charcoal-card dark:bg-[#151921] light:bg-white border border-white/10 dark:border-white/10 light:border-slate-200 p-6 shadow-2xl relative overflow-hidden group hover:border-lime-500/30 transition-all duration-300">
-              
-              {/* Card Terminal Header */}
-              <div className="flex items-center justify-between pb-4 mb-4 border-b border-white/10 dark:border-white/10 light:border-slate-200">
-                <div className="flex items-center gap-1.5">
-                  <span className="w-3 h-3 rounded-full bg-red-500/80 inline-block" />
-                  <span className="w-3 h-3 rounded-full bg-yellow-500/80 inline-block" />
-                  <span className="w-3 h-3 rounded-full bg-green-500/80 inline-block" />
-                </div>
-                <div className="font-mono text-[11px] text-slate-400 dark:text-slate-400 light:text-slate-500 flex items-center gap-1">
-                  <Terminal size={12} className="text-lime-400" />
-                  <span>sai@desk:~$ whoami</span>
-                </div>
-              </div>
-
-              {/* Developer Snapshot */}
-              <div className="space-y-4">
-                <div>
-                  <h3 className="text-xl font-bold text-white dark:text-white light:text-slate-900 tracking-tight">
-                    {personalInfo.name}
-                  </h3>
-                  <p className="text-xs text-lime-400 dark:text-lime-400 light:text-lime-600 font-mono mt-0.5">
-                    {personalInfo.role}
-                  </p>
-                </div>
-
-                <div className="p-3.5 rounded-xl bg-black/40 dark:bg-[#0b0d10]/60 light:bg-slate-50 border border-white/5 dark:border-white/5 light:border-slate-200 font-mono text-xs space-y-2 text-slate-300 dark:text-slate-300 light:text-slate-700">
-                  <div className="flex justify-between items-center">
-                    <span className="text-slate-500">role</span>
-                    <span className="text-slate-200 dark:text-slate-200 light:text-slate-800 font-medium">Full-Stack Engineer</span>
-                  </div>
-                  <div className="flex justify-between items-center">
-                    <span className="text-slate-500">current_work</span>
-                    <span className="text-lime-400 dark:text-lime-400 light:text-lime-600 font-medium">Intern @ PurpleLane</span>
-                  </div>
-                  <div className="flex justify-between items-center">
-                    <span className="text-slate-500">core_ai</span>
-                    <span className="text-slate-200 dark:text-slate-200 light:text-slate-800">RAG · LangChain · Gemini</span>
-                  </div>
-                  <div className="flex justify-between items-center">
-                    <span className="text-slate-500">degree</span>
-                    <span className="text-slate-200 dark:text-slate-200 light:text-slate-800">B.Tech CSE (Data Science)</span>
-                  </div>
-                </div>
-
-                {/* Key Attributes */}
-                <div className="space-y-2 pt-1 text-xs text-slate-300 dark:text-slate-300 light:text-slate-700">
-                  <div className="flex items-center gap-2">
-                    <CheckCircle2 size={14} className="text-lime-400 shrink-0" />
-                    <span>MERN Production APIs & Responsive Frontend</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <CheckCircle2 size={14} className="text-lime-400 shrink-0" />
-                    <span>Vector Search (Pinecone & ChromaDB)</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <CheckCircle2 size={14} className="text-lime-400 shrink-0" />
-                    <span>Deep Learning with PyTorch & Computer Vision</span>
-                  </div>
-                </div>
-              </div>
-
-              {/* Bottom Subtle Corner Accent */}
-              <div className="absolute -bottom-8 -right-8 w-24 h-24 bg-lime-400/10 rounded-full blur-xl group-hover:bg-lime-400/20 transition-all pointer-events-none" />
-            </div>
+          {/* Right Column: Hero Portrait (5 cols) */}
+          <div className="lg:col-span-5 flex justify-center">
+            <HeroPortrait />
           </div>
         </div>
 
@@ -172,9 +184,9 @@ export default function Hero({ onOpenResume }) {
           {personalInfo.stats.map((stat, i) => (
             <div
               key={i}
-              className="p-4 sm:p-5 rounded-xl bg-charcoal-card/70 dark:bg-[#151921]/70 light:bg-white border border-white/10 dark:border-white/10 light:border-slate-200 backdrop-blur-md hover:border-lime-500/30 transition-all duration-200"
+              className="p-4 sm:p-5 rounded-xl bg-charcoal-card/70 dark:bg-[#151921]/70 light:bg-white border border-white/10 dark:border-white/10 light:border-slate-200 backdrop-blur-md hover:border-lime-500/40 hover:-translate-y-0.5 transition-all duration-200 group text-center sm:text-left"
             >
-              <div className="text-2xl sm:text-3xl font-extrabold text-white dark:text-white light:text-slate-900 tracking-tight font-mono text-lime-400 dark:text-lime-400 light:text-lime-600">
+              <div className="text-2xl sm:text-3xl font-extrabold tracking-tight font-mono text-lime-400 dark:text-lime-400 light:text-lime-600 group-hover:scale-105 transition-transform origin-left inline-block">
                 {stat.value}
               </div>
               <div className="text-xs text-slate-400 dark:text-slate-400 light:text-slate-500 mt-1 font-medium">

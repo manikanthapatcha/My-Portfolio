@@ -15,11 +15,11 @@ export default function App() {
   return (
     <Router>
       <div className="min-h-screen relative flex flex-col font-sans selection:bg-lime-400/30 selection:text-lime-300">
-        
+
         {/* Accessible Skip to Content */}
         <a
           href="#main-content"
-          className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 z-50 px-4 py-2 bg-lime-400 text-black font-bold rounded-lg shadow-lg text-xs"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 z-50 px-4 py-2 bg-lime-400 text-black font-bold rounded-lg shadow-lg text-xs focus:outline-none"
         >
           Skip to main content
         </a>
@@ -34,8 +34,8 @@ export default function App() {
         <div className="flex-1">
           <Routes>
             <Route path="/" element={<HomePage onOpenResume={() => setResumeOpen(true)} />} />
-            <Route path="/contact" element={<ContactPage />} />
             <Route path="/projects/:id" element={<ProjectDetailPage />} />
+            <Route path="/contact" element={<ContactPage />} />
             <Route path="*" element={<NotFoundPage />} />
           </Routes>
         </div>
