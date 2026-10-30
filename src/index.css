@@ -11,8 +11,8 @@
   --color-ocean-blue: #0EA5E9;
   --color-ocean-teal: #14B8A6;
   --color-ocean-green: #84CC16;
-  --color-ocean-orange: #F97316;
-  --color-ocean-warm: #F59E0B;
+  --color-ocean-cyan: #06B6D4;
+  --color-ocean-sky: #38BDF8;
 
   /* Ocean Breeze Dark Mode Tokens */
   --color-ocean-dark-bg: #071A22;
@@ -58,8 +58,8 @@
     --accent: #0EA5E9;
     --accent-teal: #14B8A6;
     --accent-green: #84CC16;
-    --accent-orange: #F97316;
-    --accent-warm: #F59E0B;
+    --accent-cyan: #06B6D4;
+    --accent-sky: #38BDF8;
     --accent-glow: rgba(14, 165, 233, 0.22);
   }
 
@@ -78,8 +78,8 @@
     --accent: #0284C7;
     --accent-teal: #0D9488;
     --accent-green: #65A30D;
-    --accent-orange: #EA580C;
-    --accent-warm: #D97706;
+    --accent-cyan: #0891B2;
+    --accent-sky: #0284C7;
     --accent-glow: rgba(14, 165, 233, 0.15);
   }
 
@@ -155,11 +155,11 @@ html.light .bg-dots {
 }
 
 .bg-sunrise-gradient {
-  background-image: linear-gradient(110deg, #F97316, #F59E0B);
+  background-image: linear-gradient(110deg, #06B6D4, #0EA5E9);
 }
 
 .text-sunrise-gradient {
-  background-image: linear-gradient(110deg, #F97316, #F59E0B);
+  background-image: linear-gradient(110deg, #06B6D4, #0EA5E9);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;

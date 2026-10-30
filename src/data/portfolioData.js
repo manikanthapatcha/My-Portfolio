@@ -242,7 +242,7 @@ export const skillCategories = [
     name: "Generative AI",
     shortName: "GenAI",
     icon: "Brain",
-    color: "#F97316",
+    color: "#06B6D4",
     description: "LangChain, LangGraph, RAG, LLMs, AI Agents, Prompt Engineering, Gemini, Pinecone",
     skills: [
       { name: "LangChain", level: "Advanced", icon: "Link" },
@@ -260,7 +260,7 @@ export const skillCategories = [
     name: "Programming Languages",
     shortName: "Languages",
     icon: "Code2",
-    color: "#0EA5E9",
+    color: "#38BDF8",
     description: "Core software engineering and scripting languages",
     skills: [
       { name: "JavaScript", level: "Advanced", icon: "Code2" },
