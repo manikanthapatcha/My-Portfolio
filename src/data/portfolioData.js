@@ -2,7 +2,7 @@ export const personalInfo = {
   name: "Sai Ganesh Patcha",
   fullName: "Patcha Manikanta Naga Venkata Sai Ganesh",
   shortName: "Sai Ganesh",
-  initials: "PG",
+  initials: "",
   headline: "Hi, I'm Sai Ganesh.",
   title: "Full-Stack Developer & AI Engineer",
   role: "Full-Stack Developer & AI Engineer",

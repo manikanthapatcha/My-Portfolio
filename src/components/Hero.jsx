@@ -88,10 +88,21 @@ export default function Hero({ onOpenResume }) {
               </span>
             </div>
 
-            {/* Introduction Line */}
-            <div className="text-sm sm:text-base lg:text-lg font-mono font-bold text-[#0EA5E9] dark:text-[#0EA5E9] light:text-[#0284C7] tracking-wide flex items-center gap-2">
-              <span className="hidden lg:inline-block w-5 h-px bg-[#0EA5E9]" />
-              <span>Hi, I&apos;m Sai Ganesh.</span>
+            {/* Identity Introduction */}
+            <div className="animate-name-in flex flex-wrap items-baseline gap-x-2 gap-y-0">
+              {/* Subtle prefix */}
+              <span className="font-mono text-sm sm:text-base lg:text-lg text-[#75A0A8] dark:text-[#75A0A8] light:text-[#78949B] tracking-wide leading-none">
+                <span className="hidden lg:inline-block w-5 h-px bg-[#24505A] mr-2 align-middle" />
+                Hi, I&apos;m
+              </span>
+
+              {/* Highlighted name */}
+              <span
+                className="name-gradient name-glow font-extrabold text-xl sm:text-2xl lg:text-3xl tracking-tight leading-none"
+                aria-label="Sai Ganesh"
+              >
+                Sai Ganesh.
+              </span>
             </div>
 
             {/* Fluid Orchestrated Headline with Ocean Breeze Gradient */}

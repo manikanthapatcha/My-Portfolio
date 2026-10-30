@@ -266,6 +266,49 @@ html.light .tilt-card::before {
   animation-delay: 220ms;
 }
 
+/* ── Name Identity Entrance ──────────────────────────────────────────────── */
+/* Staggered entrance: intro line appears before the h1 words */
+.animate-name-in {
+  opacity: 0;
+  animation: headline-word-in 0.65s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation-delay: 0ms;
+}
+
+/* Subtle scrolling gradient shimmer on the name */
+@keyframes name-shine {
+  0%   { background-position: 0%   50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0%   50%; }
+}
+
+.name-gradient {
+  background: linear-gradient(
+    110deg,
+    #06B6D4 0%,
+    #0EA5E9 25%,
+    #14B8A6 50%,
+    #84CC16 75%,
+    #0EA5E9 100%
+  );
+  background-size: 250% 250%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: name-shine 5s ease infinite;
+}
+
+/* Soft text glow — layered shadows create a gentle bloom */
+.name-glow {
+  filter: drop-shadow(0 0 12px rgba(14, 165, 233, 0.45))
+          drop-shadow(0 0 24px rgba(20, 184, 166, 0.25));
+}
+
+html.light .name-glow {
+  filter: drop-shadow(0 0 8px rgba(2, 132, 199, 0.35))
+          drop-shadow(0 0 18px rgba(13, 148, 136, 0.2));
+}
+
+
 /* Orbital rotation animations */
 @keyframes orbit-slow {
   from {
@@ -317,10 +360,17 @@ html.light .tilt-card::before {
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
-  .animate-orbit-slow, .animate-orbit-reverse, .animate-word-1, .animate-word-2, .animate-word-3, .animate-node-in {
+  .animate-orbit-slow, .animate-orbit-reverse, .animate-word-1, .animate-word-2, .animate-word-3, .animate-node-in, .animate-name-in {
     animation: none !important;
     opacity: 1 !important;
     transform: none !important;
+    filter: none !important;
+  }
+  .name-gradient {
+    animation: none !important;
+    background-size: 100% 100% !important;
+  }
+  .name-glow {
     filter: none !important;
   }
   .reveal-init {

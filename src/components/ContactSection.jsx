@@ -1,4 +1,5 @@
-import { useState, useId } from 'react';
+import { useState, useId, useRef } from 'react';
+import emailjs from '@emailjs/browser';
 import {
   Mail,
   MapPin,
@@ -17,13 +18,21 @@ import { GithubIcon, LinkedinIcon } from './SocialIcons';
 import ContactRadarGraphic from './ContactRadarGraphic';
 import { personalInfo } from '../data/portfolioData';
 
-export default function ContactSection({ isStandalonePage = false }) {
-  const [copiedEmail, setCopiedEmail] = useState(false);
-  const [copiedContent, setCopiedContent] = useState(false);
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [status, setStatus] = useState(null); // 'prepared', null
+// EmailJS credentials — loaded from Vite environment variables only
+const EMAILJS_SERVICE_ID  = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+const EMAILJS_TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+const EMAILJS_PUBLIC_KEY  = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
 
-  const formId = useId();
+export default function ContactSection({ isStandalonePage = false }) {
+  const [copiedEmail, setCopiedEmail]     = useState(false);
+  const [copiedContent, setCopiedContent] = useState(false);
+  const [isSubmitting, setIsSubmitting]   = useState(false);
+  // null | 'success' | 'error'
+  const [status, setStatus] = useState(null);
+
+  const formId      = useId();
+  // Ref for the honeypot anti-spam field
+  const honeypotRef = useRef(null);
 
   const [formData, setFormData] = useState({
     name: '',
@@ -82,25 +91,45 @@ export default function ContactSection({ isStandalonePage = false }) {
     return Object.keys(errs).length === 0;
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+
+    // Honeypot anti-spam check — bots fill hidden fields, humans leave them empty
+    if (honeypotRef.current?.value) {
+      return;
+    }
+
     if (!validate()) return;
 
     setIsSubmitting(true);
+    setStatus(null);
 
-    setTimeout(() => {
+    const templateParams = {
+      name:    formData.name.trim(),
+      email:   formData.email.trim(),
+      subject: formData.subject.trim(),
+      message: formData.message.trim(),
+      time:    new Date().toLocaleString(),
+    };
+
+    try {
+      await emailjs.send(
+        EMAILJS_SERVICE_ID,
+        EMAILJS_TEMPLATE_ID,
+        templateParams,
+        EMAILJS_PUBLIC_KEY
+      );
+
+      setStatus('success');
+      // Clear form fields only after confirmed delivery
+      setFormData({ name: '', email: '', subject: '', message: '' });
+      setErrors({});
+    } catch {
+      // Network failure or EmailJS rejection — preserve data so visitor can retry
+      setStatus('error');
+    } finally {
       setIsSubmitting(false);
-      setStatus('prepared');
-
-      // Launch native email client with pre-filled content
-      const mailtoUrl = `mailto:${personalInfo.email}?subject=${encodeURIComponent(
-        `[Portfolio] ${formData.subject}`
-      )}&body=${encodeURIComponent(
-        `Hi Sai Ganesh,\n\n${formData.message}\n\nBest regards,\n${formData.name}\n${formData.email}`
-      )}`;
-
-      window.location.href = mailtoUrl;
-    }, 450);
+    }
   };
 
   const selectPill = (pill) => {
@@ -308,34 +337,72 @@ export default function ContactSection({ isStandalonePage = false }) {
                 </div>
               </div>
 
-              {/* Status Confirmation Banner */}
-              {status === 'prepared' && (
-                <div className="mb-6 p-4 rounded-xl bg-teal-500/10 border border-teal-500/30 flex items-start gap-3">
+              {/* ── Success Banner ──────────────────────────────────────── */}
+              {status === 'success' && (
+                <div
+                  role="status"
+                  aria-live="polite"
+                  className="mb-6 p-4 rounded-xl bg-teal-500/10 border border-teal-500/30 flex items-start gap-3"
+                >
                   <CheckCircle2 size={20} className="text-[#14B8A6] shrink-0 mt-0.5" />
-                  <div className="text-xs text-teal-300 dark:text-teal-300 light:text-teal-800 space-y-2">
-                    <div className="font-bold text-sm">Email Client Prepared & Launched!</div>
+                  <div className="text-xs text-teal-300 dark:text-teal-300 light:text-teal-800 space-y-1">
+                    <div className="font-bold text-sm">Message Sent Successfully!</div>
                     <p className="leading-relaxed">
-                      Your default mail program has been triggered with your pre-populated message. Just click <strong>Send</strong> in your mail application to dispatch it directly to <span className="underline">{personalInfo.email}</span>.
+                      Your message has been sent successfully! I&apos;ll get back to you soon.
                     </p>
-                    <div className="pt-1 flex items-center gap-2">
-                      <button
-                        type="button"
-                        onClick={handleCopyFullMessage}
-                        className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-gradient-to-r from-[#0EA5E9] to-[#14B8A6] text-slate-950 font-bold text-xs hover:opacity-95 transition-all shadow-sm"
+                  </div>
+                </div>
+              )}
+
+              {/* ── Error Banner ────────────────────────────────────────── */}
+              {status === 'error' && (
+                <div
+                  role="alert"
+                  aria-live="assertive"
+                  className="mb-6 p-4 rounded-xl bg-red-500/10 border border-red-500/30 flex items-start gap-3"
+                >
+                  <AlertCircle size={20} className="text-red-400 shrink-0 mt-0.5" />
+                  <div className="text-xs text-red-300 dark:text-red-300 light:text-red-800 space-y-1">
+                    <div className="font-bold text-sm">Delivery Failed</div>
+                    <p className="leading-relaxed">
+                      Unable to send your message. Please try again later. You can also reach me directly at{' '}
+                      <a
+                        href={`mailto:${personalInfo.email}`}
+                        className="underline hover:text-red-200 transition-colors"
                       >
-                        {copiedContent ? <Check size={13} /> : <Copy size={13} />}
-                        <span>{copiedContent ? 'Copied Full Content!' : 'Copy Formatted Text'}</span>
-                      </button>
-                      <span className="text-[11px] text-[#75A0A8]">
-                        (Useful if your browser does not have a default email client set)
-                      </span>
-                    </div>
+                        {personalInfo.email}
+                      </a>
+                      .
+                    </p>
                   </div>
                 </div>
               )}
 
               {/* Form */}
               <form onSubmit={handleSubmit} className="space-y-4" noValidate>
+
+                {/* Honeypot — visually hidden, traps automated bot submissions */}
+                <div
+                  aria-hidden="true"
+                  style={{
+                    position: 'absolute',
+                    left: '-9999px',
+                    top: 'auto',
+                    width: '1px',
+                    height: '1px',
+                    overflow: 'hidden',
+                  }}
+                >
+                  <label htmlFor={`${formId}-hp`}>Leave this field empty</label>
+                  <input
+                    id={`${formId}-hp`}
+                    type="text"
+                    name="hp_field"
+                    ref={honeypotRef}
+                    tabIndex={-1}
+                    autoComplete="off"
+                  />
+                </div>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   
                   {/* Name Field */}
@@ -479,6 +546,7 @@ export default function ContactSection({ isStandalonePage = false }) {
                 {/* Action Controls */}
                 <div className="pt-2">
                   <button
+                    id={`${formId}-submit`}
                     type="submit"
                     disabled={isSubmitting}
                     className="w-full flex items-center justify-center gap-2 py-3.5 rounded-xl bg-gradient-to-r from-[#0EA5E9] via-[#14B8A6] to-[#84CC16] text-slate-950 font-bold text-xs uppercase tracking-wider hover:opacity-95 disabled:opacity-60 disabled:cursor-not-allowed transition-all shadow-lg shadow-sky-500/20 active:scale-[0.99] focus:outline-none focus-visible:ring-2 focus-visible:ring-sky-400"
@@ -486,22 +554,26 @@ export default function ContactSection({ isStandalonePage = false }) {
                     {isSubmitting ? (
                       <>
                         <Loader2 size={16} className="animate-spin" />
-                        <span>Preparing Dispatch...</span>
+                        <span>Sending...</span>
                       </>
                     ) : (
                       <>
                         <Send size={15} />
-                        <span>Launch Email & Send Message</span>
+                        <span>Send Message</span>
                       </>
                     )}
                   </button>
                 </div>
 
-                {/* Technical Delivery Integrity Notice */}
+                {/* Delivery integrity notice */}
                 <div className="pt-3 border-t border-[#24505A]/40 dark:border-[#24505A]/40 light:border-[#CDE7E2] flex items-start gap-2 text-[11px] text-[#75A0A8] dark:text-[#75A0A8] light:text-[#527078] leading-snug">
                   <Sparkles size={13} className="text-[#0EA5E9] shrink-0 mt-0.5" />
                   <span>
-                    Direct transmission: Your inquiry pre-populates in your default email client addressed to <strong className="text-[#EAFBFA] dark:text-[#EAFBFA] light:text-[#103039]">{personalInfo.email}</strong>, ensuring genuine delivery with no unauthenticated web scraping.
+                    Sent directly to{' '}
+                    <strong className="text-[#EAFBFA] dark:text-[#EAFBFA] light:text-[#103039]">
+                      {personalInfo.email}
+                    </strong>{' '}
+                    via EmailJS — your reply-to address is set automatically so responses land in your inbox.
                   </span>
                 </div>
 
