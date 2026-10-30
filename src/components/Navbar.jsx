@@ -68,7 +68,7 @@ export default function Navbar({ onOpenResume }) {
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled
-          ? 'bg-[#0b0d10]/85 dark:bg-[#0b0d10]/90 light:bg-white/85 backdrop-blur-md border-b border-white/10 dark:border-white/10 light:border-slate-200 py-3 shadow-lg shadow-black/20'
+          ? 'bg-[#071A22]/85 dark:bg-[#071A22]/90 light:bg-[#F0FAF9]/90 backdrop-blur-md border-b border-[#24505A]/50 dark:border-[#24505A]/60 light:border-[#CDE7E2] py-3 shadow-lg shadow-black/20'
           : 'bg-transparent py-5'
         }`}
     >
@@ -77,20 +77,20 @@ export default function Navbar({ onOpenResume }) {
           {/* Logo / Brand */}
           <Link
             to="/"
-            className="flex items-center gap-3 group focus:outline-none focus-visible:ring-2 focus-visible:ring-lime-400 rounded-lg p-1"
+            className="flex items-center gap-3 group focus:outline-none focus-visible:ring-2 focus-visible:ring-sky-400 rounded-lg p-1"
             aria-label="Sai Ganesh Patcha - Home"
           >
-            <div className="w-10 h-10 rounded-xl bg-charcoal-card border border-white/15 dark:border-white/15 light:border-slate-300 flex items-center justify-center font-bold tracking-tight text-white dark:text-white light:text-slate-900 group-hover:border-lime-500/50 transition-colors shadow-sm relative overflow-hidden">
+            <div className="w-10 h-10 rounded-xl bg-[#103641] dark:bg-[#103641] light:bg-white border border-[#24505A] dark:border-[#24505A] light:border-[#CDE7E2] flex items-center justify-center font-bold tracking-tight text-[#EAFBFA] dark:text-[#EAFBFA] light:text-[#103039] group-hover:border-sky-500/60 transition-colors shadow-sm relative overflow-hidden">
               <span className="text-sm font-extrabold tracking-tighter">
-                P<span className="text-lime-400">G</span>
+                P<span className="text-[#0EA5E9] dark:text-[#0EA5E9] light:text-[#0284C7]">G</span>
               </span>
-              <span className="absolute bottom-1 right-1 w-1.5 h-1.5 bg-lime-400 rounded-full animate-pulse" />
+              <span className="absolute bottom-1 right-1 w-1.5 h-1.5 bg-[#14B8A6] rounded-full animate-pulse" />
             </div>
             <div className="flex flex-col">
-              <span className="text-sm font-bold tracking-tight text-slate-100 dark:text-slate-100 light:text-slate-900 group-hover:text-lime-400 transition-colors">
+              <span className="text-sm font-bold tracking-tight text-[#EAFBFA] dark:text-[#EAFBFA] light:text-[#103039] group-hover:text-[#0EA5E9] transition-colors">
                 Sai Ganesh
               </span>
-              <span className="text-[11px] font-mono text-slate-400 dark:text-slate-400 light:text-slate-500">
+              <span className="text-[11px] font-mono text-[#75A0A8] dark:text-[#75A0A8] light:text-[#78949B]">
                 Full-Stack · AI
               </span>
             </div>
@@ -98,14 +98,14 @@ export default function Navbar({ onOpenResume }) {
 
           {/* Desktop Nav Links */}
           <nav 
-            className="hidden md:flex items-center gap-1 bg-charcoal-card/80 dark:bg-[#151921]/80 light:bg-slate-100/90 border border-white/10 dark:border-white/10 light:border-slate-200 rounded-full px-4 py-1.5 backdrop-blur-md"
+            className="hidden md:flex items-center gap-1 bg-[#103641]/85 dark:bg-[#103641]/85 light:bg-[#E2F4F1]/90 border border-[#24505A] dark:border-[#24505A] light:border-[#CDE7E2] rounded-full px-4 py-1.5 backdrop-blur-md"
             aria-label="Main Navigation"
           >
             {navLinks.map((link) => (
               <a
                 key={link.name}
                 href={link.href}
-                className="px-3 py-1.5 text-xs font-medium text-slate-300 dark:text-slate-300 light:text-slate-600 hover:text-white dark:hover:text-white light:hover:text-slate-900 hover:bg-white/5 dark:hover:bg-white/5 light:hover:bg-slate-200/70 rounded-full transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-lime-400"
+                className="px-3 py-1.5 text-xs font-medium text-[#A5C7C9] dark:text-[#A5C7C9] light:text-[#527078] hover:text-[#0EA5E9] dark:hover:text-[#EAFBFA] light:hover:text-[#103039] hover:bg-[#164B55]/60 dark:hover:bg-[#164B55]/60 light:hover:bg-[#EAF8F6] rounded-full transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-sky-400"
               >
                 {link.name}
               </a>
@@ -117,7 +117,7 @@ export default function Navbar({ onOpenResume }) {
             {/* Theme Toggle */}
             <button
               onClick={toggleTheme}
-              className="w-10 h-10 rounded-full bg-charcoal-card dark:bg-[#151921] light:bg-slate-100 border border-white/10 dark:border-white/10 light:border-slate-300 flex items-center justify-center text-slate-300 dark:text-slate-300 light:text-slate-700 hover:text-lime-400 hover:border-lime-400/40 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-lime-400"
+              className="w-10 h-10 rounded-full bg-[#103641] dark:bg-[#103641] light:bg-[#E2F4F1] border border-[#24505A] dark:border-[#24505A] light:border-[#CDE7E2] flex items-center justify-center text-[#A5C7C9] dark:text-[#A5C7C9] light:text-[#527078] hover:text-[#0EA5E9] hover:border-sky-500/50 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-sky-400"
               aria-label={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
               title={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
             >
@@ -129,7 +129,7 @@ export default function Navbar({ onOpenResume }) {
               href={personalInfo.github}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-10 h-10 rounded-full bg-charcoal-card dark:bg-[#151921] light:bg-slate-100 border border-white/10 dark:border-white/10 light:border-slate-300 flex items-center justify-center text-slate-300 dark:text-slate-300 light:text-slate-700 hover:text-lime-400 hover:border-lime-400/40 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-lime-400"
+              className="w-10 h-10 rounded-full bg-[#103641] dark:bg-[#103641] light:bg-[#E2F4F1] border border-[#24505A] dark:border-[#24505A] light:border-[#CDE7E2] flex items-center justify-center text-[#A5C7C9] dark:text-[#A5C7C9] light:text-[#527078] hover:text-[#0EA5E9] hover:border-sky-500/50 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-sky-400"
               aria-label="GitHub Profile"
               title="GitHub Profile"
             >
@@ -140,7 +140,7 @@ export default function Navbar({ onOpenResume }) {
               href={personalInfo.linkedin}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-10 h-10 rounded-full bg-charcoal-card dark:bg-[#151921] light:bg-slate-100 border border-white/10 dark:border-white/10 light:border-slate-300 flex items-center justify-center text-slate-300 dark:text-slate-300 light:text-slate-700 hover:text-lime-400 hover:border-lime-400/40 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-lime-400"
+              className="w-10 h-10 rounded-full bg-[#103641] dark:bg-[#103641] light:bg-[#E2F4F1] border border-[#24505A] dark:border-[#24505A] light:border-[#CDE7E2] flex items-center justify-center text-[#A5C7C9] dark:text-[#A5C7C9] light:text-[#527078] hover:text-[#0EA5E9] hover:border-sky-500/50 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-sky-400"
               aria-label="LinkedIn Profile"
               title="LinkedIn Profile"
             >
@@ -150,7 +150,7 @@ export default function Navbar({ onOpenResume }) {
             {/* Resume Button */}
             <button
               onClick={onOpenResume}
-              className="flex items-center gap-2 px-4 py-2 text-xs font-semibold rounded-full bg-lime-400/10 text-lime-400 border border-lime-400/30 hover:bg-lime-400 hover:text-black transition-all duration-200 shadow-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-lime-400 min-h-[40px]"
+              className="flex items-center gap-2 px-4 py-2 text-xs font-semibold rounded-full bg-sky-500/10 text-sky-400 dark:text-sky-300 light:text-sky-700 border border-sky-500/30 hover:bg-gradient-to-r hover:from-[#0EA5E9] hover:to-[#14B8A6] hover:text-white hover:border-transparent transition-all duration-200 shadow-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-sky-400 min-h-[40px]"
             >
               <FileText size={14} />
               <span>Resume</span>
@@ -162,7 +162,7 @@ export default function Navbar({ onOpenResume }) {
             {/* Quick Resume Button on Mobile */}
             <button
               onClick={onOpenResume}
-              className="flex items-center gap-1.5 px-3 py-2 text-xs font-semibold rounded-full bg-lime-400/10 text-lime-400 border border-lime-400/30 hover:bg-lime-400 hover:text-black transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-lime-400 min-h-[44px]"
+              className="flex items-center gap-1.5 px-3 py-2 text-xs font-semibold rounded-full bg-sky-500/10 text-sky-400 dark:text-sky-300 light:text-sky-700 border border-sky-500/30 hover:bg-gradient-to-r hover:from-[#0EA5E9] hover:to-[#14B8A6] hover:text-white transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-sky-400 min-h-[44px]"
               aria-label="View Resume"
             >
               <FileText size={14} />
@@ -172,7 +172,7 @@ export default function Navbar({ onOpenResume }) {
             {/* Theme Toggle */}
             <button
               onClick={toggleTheme}
-              className="w-11 h-11 rounded-xl bg-charcoal-card dark:bg-[#151921] light:bg-slate-100 border border-white/10 flex items-center justify-center text-slate-300 hover:text-lime-400 active:scale-95 transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-lime-400"
+              className="w-11 h-11 rounded-xl bg-[#103641] dark:bg-[#103641] light:bg-[#E2F4F1] border border-[#24505A] dark:border-[#24505A] light:border-[#CDE7E2] flex items-center justify-center text-[#A5C7C9] dark:text-[#A5C7C9] light:text-[#527078] hover:text-[#0EA5E9] active:scale-95 transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-sky-400"
               aria-label={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
             >
               {theme === 'dark' ? <Sun size={17} /> : <Moon size={17} />}
@@ -181,12 +181,12 @@ export default function Navbar({ onOpenResume }) {
             {/* Hamburger / Close Toggle */}
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="w-11 h-11 rounded-xl bg-charcoal-card dark:bg-[#151921] light:bg-slate-100 border border-white/10 flex items-center justify-center text-slate-300 hover:text-white active:scale-95 transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-lime-400"
+              className="w-11 h-11 rounded-xl bg-[#103641] dark:bg-[#103641] light:bg-[#E2F4F1] border border-[#24505A] dark:border-[#24505A] light:border-[#CDE7E2] flex items-center justify-center text-[#A5C7C9] dark:text-[#A5C7C9] light:text-[#527078] hover:text-[#0EA5E9] active:scale-95 transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-sky-400"
               aria-label={mobileMenuOpen ? 'Close menu' : 'Open menu'}
               aria-expanded={mobileMenuOpen}
               aria-controls="mobile-navigation"
             >
-              {mobileMenuOpen ? <X size={20} className="text-lime-400" /> : <Menu size={20} />}
+              {mobileMenuOpen ? <X size={20} className="text-[#0EA5E9]" /> : <Menu size={20} />}
             </button>
           </div>
         </div>
@@ -196,7 +196,7 @@ export default function Navbar({ onOpenResume }) {
       {mobileMenuOpen && (
         <div
           id="mobile-navigation"
-          className="md:hidden fixed inset-x-0 top-full bg-[#0b0d10]/95 dark:bg-[#0b0d10]/95 light:bg-white/95 backdrop-blur-2xl border-b border-white/10 dark:border-white/10 light:border-slate-200 px-5 py-6 shadow-2xl transition-all max-h-[calc(100vh-4.5rem)] overflow-y-auto"
+          className="md:hidden fixed inset-x-0 top-full bg-[#071A22]/95 dark:bg-[#071A22]/95 light:bg-[#F0FAF9]/95 backdrop-blur-2xl border-b border-[#24505A] dark:border-[#24505A] light:border-[#CDE7E2] px-5 py-6 shadow-2xl transition-all max-h-[calc(100vh-4.5rem)] overflow-y-auto"
         >
           <nav className="flex flex-col gap-2" aria-label="Mobile Navigation Links">
             {navLinks.map((link) => (
@@ -204,19 +204,19 @@ export default function Navbar({ onOpenResume }) {
                 key={link.name}
                 href={link.href}
                 onClick={() => setMobileMenuOpen(false)}
-                className="flex items-center px-4 py-3 rounded-xl text-sm font-semibold text-slate-200 dark:text-slate-200 light:text-slate-800 hover:bg-white/5 dark:hover:bg-white/5 light:hover:bg-slate-100 hover:text-lime-400 transition-colors min-h-[44px] focus:outline-none focus-visible:ring-2 focus-visible:ring-lime-400"
+                className="flex items-center px-4 py-3 rounded-xl text-sm font-semibold text-[#EAFBFA] dark:text-[#EAFBFA] light:text-[#103039] hover:bg-[#164B55]/50 dark:hover:bg-[#164B55]/50 light:hover:bg-[#EAF8F6] hover:text-[#0EA5E9] transition-colors min-h-[44px] focus:outline-none focus-visible:ring-2 focus-visible:ring-sky-400"
               >
                 {link.name}
               </a>
             ))}
 
-            <div className="pt-4 mt-2 border-t border-white/10 dark:border-white/10 light:border-slate-200 flex flex-col gap-3">
+            <div className="pt-4 mt-2 border-t border-[#24505A] dark:border-[#24505A] light:border-[#CDE7E2] flex flex-col gap-3">
               <button
                 onClick={() => {
                   setMobileMenuOpen(false);
                   onOpenResume();
                 }}
-                className="w-full flex items-center justify-center gap-2 py-3 rounded-xl bg-lime-400 text-black font-bold text-sm hover:bg-lime-300 active:scale-[0.98] transition-all shadow-md shadow-lime-500/20 min-h-[44px]"
+                className="w-full flex items-center justify-center gap-2 py-3 rounded-xl bg-gradient-to-r from-[#0EA5E9] via-[#14B8A6] to-[#84CC16] text-slate-950 font-bold text-sm hover:opacity-95 active:scale-[0.98] transition-all shadow-md shadow-sky-500/20 min-h-[44px]"
               >
                 <FileText size={16} />
                 <span>View Full Resume</span>
@@ -227,7 +227,7 @@ export default function Navbar({ onOpenResume }) {
                   href={personalInfo.github}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center justify-center gap-2 py-2.5 px-3 rounded-xl bg-white/5 dark:bg-white/5 light:bg-slate-100 text-xs font-mono text-slate-300 dark:text-slate-300 light:text-slate-700 hover:text-lime-400 min-h-[44px]"
+                  className="flex items-center justify-center gap-2 py-2.5 px-3 rounded-xl bg-[#103641] dark:bg-[#103641] light:bg-[#E2F4F1] border border-[#24505A] dark:border-[#24505A] light:border-[#CDE7E2] text-xs font-mono text-[#A5C7C9] dark:text-[#A5C7C9] light:text-[#527078] hover:text-[#0EA5E9] min-h-[44px]"
                 >
                   <GithubIcon size={15} />
                   <span>GitHub</span>
@@ -237,7 +237,7 @@ export default function Navbar({ onOpenResume }) {
                   href={personalInfo.linkedin}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center justify-center gap-2 py-2.5 px-3 rounded-xl bg-white/5 dark:bg-white/5 light:bg-slate-100 text-xs font-mono text-slate-300 dark:text-slate-300 light:text-slate-700 hover:text-lime-400 min-h-[44px]"
+                  className="flex items-center justify-center gap-2 py-2.5 px-3 rounded-xl bg-[#103641] dark:bg-[#103641] light:bg-[#E2F4F1] border border-[#24505A] dark:border-[#24505A] light:border-[#CDE7E2] text-xs font-mono text-[#A5C7C9] dark:text-[#A5C7C9] light:text-[#527078] hover:text-[#0EA5E9] min-h-[44px]"
                 >
                   <LinkedinIcon size={15} />
                   <span>LinkedIn</span>

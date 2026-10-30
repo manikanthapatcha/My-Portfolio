@@ -14,12 +14,12 @@ export default function App() {
 
   return (
     <Router>
-      <div className="min-h-screen relative flex flex-col font-sans selection:bg-lime-400/30 selection:text-lime-300">
+      <div className="min-h-screen relative flex flex-col font-sans selection:bg-sky-500/30 selection:text-sky-200">
 
         {/* Accessible Skip to Content */}
         <a
           href="#main-content"
-          className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 z-50 px-4 py-2 bg-lime-400 text-black font-bold rounded-lg shadow-lg text-xs focus:outline-none"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 z-50 px-4 py-2 bg-gradient-to-r from-sky-500 via-teal-500 to-lime-500 text-slate-950 font-bold rounded-lg shadow-lg text-xs focus:outline-none"
         >
           Skip to main content
         </a>

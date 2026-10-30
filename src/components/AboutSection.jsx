@@ -8,20 +8,20 @@ export default function AboutSection() {
   const terminalTiltRef = useCardTilt({ maxTilt: 5, scale: 1.015 });
 
   return (
-    <section id="about" className="py-24 relative z-10 border-t border-white/5 dark:border-white/5 light:border-slate-200">
+    <section id="about" className="py-24 relative z-10 border-t border-[#24505A]/40 dark:border-[#24505A]/40 light:border-[#CDE7E2]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
         <div ref={headerRevealRef} className="reveal-init flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
           <div>
-            <div className="text-xs font-mono uppercase tracking-widest text-lime-400 dark:text-lime-400 light:text-lime-600 mb-2">
+            <div className="text-xs font-mono uppercase tracking-widest text-[#0EA5E9] dark:text-[#0EA5E9] light:text-[#0284C7] mb-2 font-semibold">
               Background & Approach
             </div>
-            <h2 className="text-3xl sm:text-4xl font-extrabold text-white dark:text-white light:text-slate-900 tracking-tight">
+            <h2 className="text-3xl sm:text-4xl font-extrabold text-[#EAFBFA] dark:text-[#EAFBFA] light:text-[#103039] tracking-tight">
               About Sai Ganesh Patcha
             </h2>
           </div>
-          <div className="text-xs font-mono text-slate-400 dark:text-slate-400 light:text-slate-500 bg-white/5 px-3 py-1.5 rounded-full border border-white/5">
+          <div className="text-xs font-mono text-[#75A0A8] dark:text-[#75A0A8] light:text-[#527078] bg-[#103641] dark:bg-[#103641] light:bg-[#E2F4F1] px-3.5 py-1.5 rounded-full border border-[#24505A] dark:border-[#24505A] light:border-[#CDE7E2]">
             ENGINEERING_MINDSET = &quot;PROD_READY&quot;
           </div>
         </div>
@@ -31,7 +31,7 @@ export default function AboutSection() {
           
           {/* Left Column: Narrative (7 cols) */}
           <div ref={leftColRevealRef} className="reveal-init lg:col-span-7 space-y-6">
-            <div className="rounded-2xl bg-charcoal-card dark:bg-[#151921] light:bg-white border border-white/10 dark:border-white/10 light:border-slate-200 p-6 sm:p-8 shadow-xl space-y-4 text-slate-300 dark:text-slate-300 light:text-slate-700 leading-relaxed text-sm sm:text-base">
+            <div className="rounded-2xl bg-[#103641] dark:bg-[#103641] light:bg-white border border-[#24505A] dark:border-[#24505A] light:border-[#CDE7E2] p-6 sm:p-8 shadow-xl space-y-4 text-[#A5C7C9] dark:text-[#A5C7C9] light:text-[#527078] leading-relaxed text-sm sm:text-base">
               <p>
                 I am a Computer Science and Engineering (Data Science) undergraduate at Sasi Institute of Technology and Engineering (Tadepalligudem, AP) and a MERN Stack Developer Intern at PurpleLane.
               </p>
@@ -41,24 +41,24 @@ export default function AboutSection() {
               </p>
 
               <p>
-                Through projects like <strong className="text-lime-400 dark:text-lime-400 light:text-lime-600 font-semibold">ShopMate</strong> and <strong className="text-lime-400 dark:text-lime-400 light:text-lime-600 font-semibold">LegalGenie</strong>, I have worked directly with Pinecone and ChromaDB for vector retrieval, LangChain and LangGraph for structured agent workflows, and Google Gemini API for multimodal reasoning.
+                Through projects like <strong className="text-[#0EA5E9] dark:text-[#0EA5E9] light:text-[#0284C7] font-semibold">ShopMate</strong> and <strong className="text-[#0EA5E9] dark:text-[#0EA5E9] light:text-[#0284C7] font-semibold">LegalGenie</strong>, I have worked directly with Pinecone and ChromaDB for vector retrieval, LangChain and LangGraph for structured agent workflows, and Google Gemini API for multimodal reasoning.
               </p>
 
               <div className="pt-4 grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
-                <div className="flex items-center gap-2 p-2.5 rounded-lg bg-black/30 dark:bg-black/30 light:bg-slate-50 border border-white/5 dark:border-white/5 light:border-slate-200 hover:border-lime-400/30 transition-colors">
-                  <ShieldCheck size={16} className="text-lime-400 shrink-0" />
+                <div className="flex items-center gap-2 p-2.5 rounded-lg bg-[#071A22]/60 dark:bg-[#071A22]/60 light:bg-[#F0FAF9] border border-[#24505A]/60 dark:border-[#24505A]/60 light:border-[#CDE7E2] hover:border-sky-500/40 transition-colors text-[#EAFBFA] dark:text-[#EAFBFA] light:text-[#103039]">
+                  <ShieldCheck size={16} className="text-[#0EA5E9] shrink-0" />
                   <span>Production-Grade Code & Tests</span>
                 </div>
-                <div className="flex items-center gap-2 p-2.5 rounded-lg bg-black/30 dark:bg-black/30 light:bg-slate-50 border border-white/5 dark:border-white/5 light:border-slate-200 hover:border-lime-400/30 transition-colors">
-                  <Zap size={16} className="text-lime-400 shrink-0" />
+                <div className="flex items-center gap-2 p-2.5 rounded-lg bg-[#071A22]/60 dark:bg-[#071A22]/60 light:bg-[#F0FAF9] border border-[#24505A]/60 dark:border-[#24505A]/60 light:border-[#CDE7E2] hover:border-sky-500/40 transition-colors text-[#EAFBFA] dark:text-[#EAFBFA] light:text-[#103039]">
+                  <Zap size={16} className="text-[#14B8A6] shrink-0" />
                   <span>Sub-Second Vector Search</span>
                 </div>
-                <div className="flex items-center gap-2 p-2.5 rounded-lg bg-black/30 dark:bg-black/30 light:bg-slate-50 border border-white/5 dark:border-white/5 light:border-slate-200 hover:border-lime-400/30 transition-colors">
-                  <Code2 size={16} className="text-lime-400 shrink-0" />
+                <div className="flex items-center gap-2 p-2.5 rounded-lg bg-[#071A22]/60 dark:bg-[#071A22]/60 light:bg-[#F0FAF9] border border-[#24505A]/60 dark:border-[#24505A]/60 light:border-[#CDE7E2] hover:border-sky-500/40 transition-colors text-[#EAFBFA] dark:text-[#EAFBFA] light:text-[#103039]">
+                  <Code2 size={16} className="text-[#0EA5E9] shrink-0" />
                   <span>Clean MERN RESTful Architecture</span>
                 </div>
-                <div className="flex items-center gap-2 p-2.5 rounded-lg bg-black/30 dark:bg-black/30 light:bg-slate-50 border border-white/5 dark:border-white/5 light:border-slate-200 hover:border-lime-400/30 transition-colors">
-                  <Cpu size={16} className="text-lime-400 shrink-0" />
+                <div className="flex items-center gap-2 p-2.5 rounded-lg bg-[#071A22]/60 dark:bg-[#071A22]/60 light:bg-[#F0FAF9] border border-[#24505A]/60 dark:border-[#24505A]/60 light:border-[#CDE7E2] hover:border-sky-500/40 transition-colors text-[#EAFBFA] dark:text-[#EAFBFA] light:text-[#103039]">
+                  <Cpu size={16} className="text-[#14B8A6] shrink-0" />
                   <span>RAG & Multi-Turn Agents</span>
                 </div>
               </div>
@@ -69,18 +69,18 @@ export default function AboutSection() {
           <div ref={rightColRevealRef} className="reveal-init lg:col-span-5">
             <div 
               ref={terminalTiltRef}
-              className="tilt-card rounded-2xl bg-[#090b0e] border border-white/10 light:border-slate-300 p-5 shadow-2xl font-mono text-xs text-slate-300 overflow-hidden hover:border-lime-400/30 transition-all"
+              className="tilt-card rounded-2xl bg-[#071A22] dark:bg-[#071A22] light:bg-white border border-[#24505A] dark:border-[#24505A] light:border-[#CDE7E2] p-5 shadow-2xl font-mono text-xs text-[#EAFBFA] dark:text-[#EAFBFA] light:text-[#103039] overflow-hidden hover:border-sky-500/50 transition-all"
             >
-              <div className="flex items-center justify-between pb-3 mb-3 border-b border-white/10 text-slate-400">
+              <div className="flex items-center justify-between pb-3 mb-3 border-b border-[#24505A] dark:border-[#24505A] light:border-[#CDE7E2] text-[#75A0A8] dark:text-[#75A0A8] light:text-[#78949B]">
                 <div className="flex items-center gap-1.5">
                   <span className="w-2.5 h-2.5 rounded-full bg-red-500/80 inline-block" />
-                  <span className="w-2.5 h-2.5 rounded-full bg-yellow-500/80 inline-block" />
-                  <span className="w-2.5 h-2.5 rounded-full bg-green-500/80 inline-block" />
+                  <span className="w-2.5 h-2.5 rounded-full bg-amber-500/80 inline-block" />
+                  <span className="w-2.5 h-2.5 rounded-full bg-teal-500/80 inline-block" />
                 </div>
-                <span className="text-[11px] text-slate-500">engineer_profile.json</span>
+                <span className="text-[11px] text-[#75A0A8] dark:text-[#75A0A8] light:text-[#78949B]">engineer_profile.json</span>
               </div>
 
-              <pre className="text-[11px] leading-relaxed text-slate-300 overflow-x-auto selection:bg-lime-400/20">
+              <pre className="text-[11px] leading-relaxed text-[#A5C7C9] dark:text-[#A5C7C9] light:text-[#527078] overflow-x-auto selection:bg-sky-500/30 selection:text-sky-200">
                 <code>
 {`{
   "name": "Sai Ganesh Patcha",
@@ -110,9 +110,9 @@ export default function AboutSection() {
                 </code>
               </pre>
 
-              <div className="mt-4 pt-3 border-t border-white/10 flex items-center justify-between text-[11px] text-slate-500">
-                <span className="flex items-center gap-1.5 text-lime-400">
-                  <span className="w-2 h-2 rounded-full bg-lime-400 animate-pulse" />
+              <div className="mt-4 pt-3 border-t border-[#24505A] dark:border-[#24505A] light:border-[#CDE7E2] flex items-center justify-between text-[11px] text-[#75A0A8] dark:text-[#75A0A8] light:text-[#78949B]">
+                <span className="flex items-center gap-1.5 text-[#14B8A6] font-semibold">
+                  <span className="w-2 h-2 rounded-full bg-[#14B8A6] animate-pulse" />
                   status: active
                 </span>
                 <span>utf-8 · json</span>

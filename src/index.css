@@ -1,42 +1,86 @@
 @import "tailwindcss";
 
+@custom-variant light (&:where(.light, .light *));
+@custom-variant dark (&:where(.dark, .dark *));
+
 @theme {
   --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
   --font-mono: 'JetBrains Mono', monospace;
-  --color-obsidian: #0b0d10;
-  --color-charcoal-base: #0e1217;
-  --color-charcoal-card: #151921;
-  --color-charcoal-border: #232936;
-  --color-lime-accent: #84cc16;
+
+  /* Ocean Breeze Primary Brand Tokens */
+  --color-ocean-blue: #0EA5E9;
+  --color-ocean-teal: #14B8A6;
+  --color-ocean-green: #84CC16;
+  --color-ocean-orange: #F97316;
+  --color-ocean-warm: #F59E0B;
+
+  /* Ocean Breeze Dark Mode Tokens */
+  --color-ocean-dark-bg: #071A22;
+  --color-ocean-dark-secondary: #0D2933;
+  --color-ocean-dark-card: #103641;
+  --color-ocean-dark-hover: #164B55;
+  --color-ocean-dark-border: #24505A;
+  --color-ocean-dark-text: #EAFBFA;
+  --color-ocean-dark-secondary-text: #A5C7C9;
+  --color-ocean-dark-muted: #75A0A8;
+
+  /* Ocean Breeze Light Mode Tokens */
+  --color-ocean-light-bg: #F0FAF9;
+  --color-ocean-light-secondary: #E2F4F1;
+  --color-ocean-light-card: #FFFFFF;
+  --color-ocean-light-hover: #EAF8F6;
+  --color-ocean-light-border: #CDE7E2;
+  --color-ocean-light-text: #103039;
+  --color-ocean-light-secondary-text: #527078;
+  --color-ocean-light-muted: #78949B;
+
+  /* Semantic Theme Aliases */
+  --color-obsidian: #071A22;
+  --color-charcoal-base: #0D2933;
+  --color-charcoal-card: #103641;
+  --color-charcoal-border: #24505A;
+  --color-lime-accent: #0EA5E9;
 }
 
 @layer base {
   :root {
-    --bg-primary: #0b0d10;
-    --bg-secondary: #12161f;
-    --bg-card: #151921;
-    --bg-card-hover: #1c222e;
-    --border-color: rgba(255, 255, 255, 0.08);
-    --border-glow: rgba(132, 204, 22, 0.35);
-    --text-primary: #f8fafc;
-    --text-secondary: #94a3b8;
-    --text-muted: #64748b;
-    --accent: #84cc16;
-    --accent-glow: rgba(132, 204, 22, 0.18);
+    /* DARK MODE (Default) Exact Tokens */
+    --bg-primary: #071A22;
+    --bg-secondary: #0D2933;
+    --bg-card: #103641;
+    --bg-card-hover: #164B55;
+    --border-color: #24505A;
+    --border-glow: rgba(14, 165, 233, 0.35);
+    --text-primary: #EAFBFA;
+    --text-secondary: #A5C7C9;
+    --text-muted: #75A0A8;
+
+    --accent: #0EA5E9;
+    --accent-teal: #14B8A6;
+    --accent-green: #84CC16;
+    --accent-orange: #F97316;
+    --accent-warm: #F59E0B;
+    --accent-glow: rgba(14, 165, 233, 0.22);
   }
 
   html.light {
-    --bg-primary: #f8fafc;
-    --bg-secondary: #f1f5f9;
-    --bg-card: #ffffff;
-    --bg-card-hover: #f8fafc;
-    --border-color: rgba(15, 23, 42, 0.1);
-    --border-glow: rgba(101, 163, 13, 0.4);
-    --text-primary: #0f172a;
-    --text-secondary: #475569;
-    --text-muted: #64748b;
-    --accent: #65a30d;
-    --accent-glow: rgba(101, 163, 13, 0.15);
+    /* LIGHT MODE Exact Tokens */
+    --bg-primary: #F0FAF9;
+    --bg-secondary: #E2F4F1;
+    --bg-card: #FFFFFF;
+    --bg-card-hover: #EAF8F6;
+    --border-color: #CDE7E2;
+    --border-glow: rgba(20, 184, 166, 0.4);
+    --text-primary: #103039;
+    --text-secondary: #527078;
+    --text-muted: #78949B;
+
+    --accent: #0284C7;
+    --accent-teal: #0D9488;
+    --accent-green: #65A30D;
+    --accent-orange: #EA580C;
+    --accent-warm: #D97706;
+    --accent-glow: rgba(14, 165, 233, 0.15);
   }
 
   html {
@@ -62,36 +106,63 @@
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(148, 163, 184, 0.2);
+  background: rgba(165, 199, 201, 0.25);
   border-radius: 9999px;
 }
 
+html.light ::-webkit-scrollbar-thumb {
+  background: rgba(82, 112, 120, 0.25);
+}
+
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(132, 204, 22, 0.4);
+  background: rgba(14, 165, 233, 0.5);
 }
 
 /* Grid lattice backgrounds */
 .bg-grid-lattice {
   background-size: 36px 36px;
   background-image: 
-    linear-gradient(to right, rgba(255, 255, 255, 0.04) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+    linear-gradient(to right, rgba(36, 80, 90, 0.35) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(36, 80, 90, 0.35) 1px, transparent 1px);
 }
 
 html.light .bg-grid-lattice {
   background-image: 
-    linear-gradient(to right, rgba(15, 23, 42, 0.05) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(15, 23, 42, 0.05) 1px, transparent 1px);
+    linear-gradient(to right, rgba(205, 231, 226, 0.6) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(205, 231, 226, 0.6) 1px, transparent 1px);
 }
 
 /* Subtle dot pattern */
 .bg-dots {
-  background-image: radial-gradient(rgba(255, 255, 255, 0.07) 1px, transparent 1px);
+  background-image: radial-gradient(rgba(36, 80, 90, 0.4) 1px, transparent 1px);
   background-size: 24px 24px;
 }
 
 html.light .bg-dots {
-  background-image: radial-gradient(rgba(15, 23, 42, 0.08) 1px, transparent 1px);
+  background-image: radial-gradient(rgba(82, 112, 120, 0.25) 1px, transparent 1px);
+}
+
+/* Ocean Breeze Gradients */
+.bg-ocean-gradient {
+  background-image: linear-gradient(110deg, #0EA5E9, #14B8A6, #84CC16);
+}
+
+.text-ocean-gradient {
+  background-image: linear-gradient(110deg, #0EA5E9, #14B8A6, #84CC16);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.bg-sunrise-gradient {
+  background-image: linear-gradient(110deg, #F97316, #F59E0B);
+}
+
+.text-sunrise-gradient {
+  background-image: linear-gradient(110deg, #F97316, #F59E0B);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }
 
 /* Card Glow & Interactive Tilt Effect */
@@ -101,8 +172,8 @@ html.light .bg-dots {
 }
 
 .card-glow:hover {
-  border-color: rgba(132, 204, 22, 0.35);
-  box-shadow: 0 0 25px -5px rgba(132, 204, 22, 0.15);
+  border-color: rgba(14, 165, 233, 0.45);
+  box-shadow: 0 0 25px -5px rgba(14, 165, 233, 0.2);
 }
 
 /* 3D Perspective Tilt Card with Cursor Radial Illumination */
@@ -120,13 +191,21 @@ html.light .bg-dots {
   border-radius: inherit;
   background: radial-gradient(
     380px circle at var(--mouse-x, -500px) var(--mouse-y, -500px),
-    rgba(132, 204, 22, 0.12),
+    rgba(14, 165, 233, 0.14),
     transparent 65%
   );
   pointer-events: none;
   opacity: 0;
   transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1);
   z-index: 1;
+}
+
+html.light .tilt-card::before {
+  background: radial-gradient(
+    380px circle at var(--mouse-x, -500px) var(--mouse-y, -500px),
+    rgba(20, 184, 166, 0.12),
+    transparent 65%
+  );
 }
 
 .tilt-card:hover::before {

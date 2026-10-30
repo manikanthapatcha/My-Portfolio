@@ -242,7 +242,7 @@ export const skillCategories = [
     name: "Generative AI",
     shortName: "GenAI",
     icon: "Brain",
-    color: "#84cc16",
+    color: "#F97316",
     description: "LangChain, LangGraph, RAG, LLMs, AI Agents, Prompt Engineering, Gemini, Pinecone",
     skills: [
       { name: "LangChain", level: "Advanced", icon: "Link" },
@@ -260,7 +260,7 @@ export const skillCategories = [
     name: "Programming Languages",
     shortName: "Languages",
     icon: "Code2",
-    color: "#38bdf8",
+    color: "#0EA5E9",
     description: "Core software engineering and scripting languages",
     skills: [
       { name: "JavaScript", level: "Advanced", icon: "Code2" },
@@ -272,7 +272,7 @@ export const skillCategories = [
     name: "Frontend Development",
     shortName: "Frontend",
     icon: "Layout",
-    color: "#38bdf8",
+    color: "#0EA5E9",
     description: "Modern, responsive, accessible web interfaces",
     skills: [
       { name: "React.js", level: "Advanced", icon: "Atom" },
@@ -287,7 +287,7 @@ export const skillCategories = [
     name: "Backend Development",
     shortName: "Backend",
     icon: "Server",
-    color: "#a855f7",
+    color: "#14B8A6",
     description: "Scalable server architectures, APIs & microservices",
     skills: [
       { name: "Node.js", level: "Advanced", icon: "Server" },
@@ -300,7 +300,7 @@ export const skillCategories = [
     name: "Databases",
     shortName: "Databases",
     icon: "Database",
-    color: "#f59e0b",
+    color: "#84CC16",
     description: "Document, relational, and vector data storage",
     skills: [
       { name: "MongoDB", level: "Advanced", icon: "Database" },
@@ -312,7 +312,7 @@ export const skillCategories = [
     name: "Tools and Platforms",
     shortName: "Tools & Platforms",
     icon: "Wrench",
-    color: "#ec4899",
+    color: "#6366F1",
     description: "Version control, containerization & deployment",
     skills: [
       { name: "Git", level: "Advanced", icon: "GitBranch" },

@@ -114,26 +114,26 @@ export default function ContactSection({ isStandalonePage = false }) {
     <section
       id="contact"
       className={`relative z-10 overflow-hidden ${
-        isStandalonePage ? 'pt-32 pb-24' : 'py-24 border-t border-white/5 dark:border-white/5 light:border-slate-200'
+        isStandalonePage ? 'pt-32 pb-24' : 'py-24 border-t border-[#24505A]/40 dark:border-[#24505A]/40 light:border-[#CDE7E2]'
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Bold Contact Hero */}
         <div className="max-w-3xl mb-16 space-y-4">
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-lime-400/10 text-lime-400 dark:text-lime-400 light:text-lime-600 border border-lime-400/20 text-xs font-mono tracking-wide">
-            <span className="w-2 h-2 rounded-full bg-lime-400 animate-pulse" />
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-sky-500/10 text-[#0EA5E9] dark:text-[#0EA5E9] light:text-[#0284C7] border border-sky-500/25 text-xs font-mono tracking-wide">
+            <span className="w-2 h-2 rounded-full bg-[#0EA5E9] animate-pulse" />
             <span>GET IN TOUCH · OPEN FOR OPPORTUNITIES</span>
           </div>
 
-          <h2 className="text-3xl sm:text-5xl md:text-6xl font-black text-white dark:text-white light:text-slate-900 tracking-tight leading-[1.1]">
+          <h2 className="text-3xl sm:text-5xl md:text-6xl font-black text-[#EAFBFA] dark:text-[#EAFBFA] light:text-[#103039] tracking-tight leading-[1.1]">
             Have an idea?{' '}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-lime-400 via-lime-300 to-emerald-400">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#0EA5E9] via-[#14B8A6] to-[#84CC16]">
               Let&apos;s build something meaningful.
             </span>
           </h2>
 
-          <p className="text-base sm:text-lg text-slate-300 dark:text-slate-300 light:text-slate-600 leading-relaxed font-normal">
+          <p className="text-base sm:text-lg text-[#A5C7C9] dark:text-[#A5C7C9] light:text-[#527078] leading-relaxed font-normal">
             Whether you&apos;re looking to hire an entry-level Full-Stack or AI Engineer, discuss a project collaboration, or explore deep learning and RAG systems, my inbox is open.
           </p>
         </div>
@@ -145,13 +145,13 @@ export default function ContactSection({ isStandalonePage = false }) {
           <div className="lg:col-span-5 space-y-6">
             
             {/* Visual Radar Core */}
-            <div className="rounded-2xl bg-charcoal-card dark:bg-[#151921] light:bg-white border border-white/10 dark:border-white/10 light:border-slate-200 p-6 shadow-xl relative overflow-hidden group">
-              <div className="flex items-center justify-between pb-3 mb-4 border-b border-white/10 dark:border-white/10 light:border-slate-200">
-                <span className="text-xs font-mono uppercase tracking-wider text-slate-400 dark:text-slate-400 light:text-slate-500">
+            <div className="rounded-2xl bg-[#103641] dark:bg-[#103641] light:bg-white border border-[#24505A] dark:border-[#24505A] light:border-[#CDE7E2] p-6 shadow-xl relative overflow-hidden group">
+              <div className="flex items-center justify-between pb-3 mb-4 border-b border-[#24505A]/40 dark:border-[#24505A]/40 light:border-[#CDE7E2]">
+                <span className="text-xs font-mono uppercase tracking-wider text-[#75A0A8] dark:text-[#75A0A8] light:text-[#78949B]">
                   Signal Coordinates
                 </span>
-                <span className="flex items-center gap-1.5 text-[11px] font-mono text-lime-400">
-                  <span className="w-1.5 h-1.5 rounded-full bg-lime-400 animate-ping" />
+                <span className="flex items-center gap-1.5 text-[11px] font-mono text-[#14B8A6]">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#14B8A6] animate-ping" />
                   Active Listener
                 </span>
               </div>
@@ -160,32 +160,32 @@ export default function ContactSection({ isStandalonePage = false }) {
               <ContactRadarGraphic />
 
               {/* Verified Identity Tag */}
-              <div className="mt-4 pt-4 border-t border-white/5 dark:border-white/5 light:border-slate-200 text-center">
-                <div className="text-sm font-bold text-white dark:text-white light:text-slate-900">
+              <div className="mt-4 pt-4 border-t border-[#24505A]/40 dark:border-[#24505A]/40 light:border-[#CDE7E2] text-center">
+                <div className="text-sm font-bold text-[#EAFBFA] dark:text-[#EAFBFA] light:text-[#103039]">
                   Patcha Manikanta Naga Venkata Sai Ganesh
                 </div>
-                <div className="text-xs font-mono text-lime-400 dark:text-lime-400 light:text-lime-600 mt-0.5">
+                <div className="text-xs font-mono text-[#0EA5E9] dark:text-[#0EA5E9] light:text-[#0284C7] mt-0.5">
                   Full-Stack Developer · Generative AI
                 </div>
               </div>
             </div>
 
             {/* Direct Email Card */}
-            <div className="rounded-2xl bg-charcoal-card dark:bg-[#151921] light:bg-white border border-white/10 dark:border-white/10 light:border-slate-200 p-6 shadow-xl space-y-4">
+            <div className="rounded-2xl bg-[#103641] dark:bg-[#103641] light:bg-white border border-[#24505A] dark:border-[#24505A] light:border-[#CDE7E2] p-6 shadow-xl space-y-4">
               <div className="flex items-center justify-between">
-                <span className="text-xs font-mono uppercase tracking-wider text-slate-400 dark:text-slate-400 light:text-slate-500">
+                <span className="text-xs font-mono uppercase tracking-wider text-[#75A0A8] dark:text-[#75A0A8] light:text-[#78949B]">
                   Direct Email
                 </span>
-                <div className="flex items-center gap-1.5 text-xs text-slate-400 dark:text-slate-400 light:text-slate-500">
-                  <Clock size={13} className="text-lime-400" />
+                <div className="flex items-center gap-1.5 text-xs text-[#75A0A8] dark:text-[#75A0A8] light:text-[#78949B]">
+                  <Clock size={13} className="text-[#0EA5E9]" />
                   <span>~24h reply</span>
                 </div>
               </div>
 
-              <div className="flex items-center justify-between gap-2 p-3.5 rounded-xl bg-black/40 dark:bg-[#0b0d10]/60 light:bg-slate-50 border border-white/5 dark:border-white/5 light:border-slate-200">
+              <div className="flex items-center justify-between gap-2 p-3.5 rounded-xl bg-[#071A22]/70 dark:bg-[#071A22]/70 light:bg-[#E2F4F1] border border-[#24505A]/50 dark:border-[#24505A]/50 light:border-[#CDE7E2]">
                 <div className="flex items-center gap-2.5 min-w-0">
-                  <Mail size={16} className="text-lime-400 shrink-0" />
-                  <span className="font-mono text-xs sm:text-sm text-slate-200 dark:text-slate-200 light:text-slate-800 truncate select-all">
+                  <Mail size={16} className="text-[#0EA5E9] shrink-0" />
+                  <span className="font-mono text-xs sm:text-sm text-[#EAFBFA] dark:text-[#EAFBFA] light:text-[#103039] truncate select-all">
                     {personalInfo.email}
                   </span>
                 </div>
@@ -193,14 +193,14 @@ export default function ContactSection({ isStandalonePage = false }) {
                 <button
                   type="button"
                   onClick={handleCopyEmail}
-                  className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium bg-white/5 hover:bg-lime-400/20 text-slate-300 hover:text-lime-400 transition-colors shrink-0 focus:outline-none focus-visible:ring-2 focus-visible:ring-lime-400"
+                  className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium bg-[#103641] dark:bg-[#103641] light:bg-white hover:bg-sky-500/20 text-[#A5C7C9] dark:text-[#A5C7C9] light:text-[#527078] hover:text-[#0EA5E9] border border-[#24505A]/50 dark:border-[#24505A]/50 light:border-[#CDE7E2] transition-colors shrink-0 focus:outline-none focus-visible:ring-2 focus-visible:ring-sky-400"
                   aria-label="Copy email address"
                   title="Copy email to clipboard"
                 >
                   {copiedEmail ? (
                     <>
-                      <Check size={14} className="text-lime-400" />
-                      <span className="text-lime-400 font-bold">Copied!</span>
+                      <Check size={14} className="text-[#14B8A6]" />
+                      <span className="text-[#14B8A6] font-bold">Copied!</span>
                     </>
                   ) : (
                     <>
@@ -212,8 +212,8 @@ export default function ContactSection({ isStandalonePage = false }) {
               </div>
 
               {/* Location & Status Bar */}
-              <div className="flex items-center gap-2 text-xs text-slate-400 dark:text-slate-400 light:text-slate-500 font-mono pt-1">
-                <MapPin size={14} className="text-lime-400 shrink-0" />
+              <div className="flex items-center gap-2 text-xs text-[#75A0A8] dark:text-[#75A0A8] light:text-[#78949B] font-mono pt-1">
+                <MapPin size={14} className="text-[#0EA5E9] shrink-0" />
                 <span>{personalInfo.location}</span>
               </div>
             </div>
@@ -224,44 +224,44 @@ export default function ContactSection({ isStandalonePage = false }) {
                 href={personalInfo.linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-4 rounded-xl bg-charcoal-card dark:bg-[#151921] light:bg-white border border-white/10 dark:border-white/10 light:border-slate-200 hover:border-lime-400/40 transition-all group flex items-center justify-between"
+                className="p-4 rounded-xl bg-[#103641] dark:bg-[#103641] light:bg-white border border-[#24505A] dark:border-[#24505A] light:border-[#CDE7E2] hover:border-sky-500/50 transition-all group flex items-center justify-between"
               >
                 <div className="flex items-center gap-2.5">
-                  <div className="w-8 h-8 rounded-lg bg-white/5 flex items-center justify-center text-slate-300 group-hover:text-lime-400 transition-colors">
+                  <div className="w-8 h-8 rounded-lg bg-sky-500/10 flex items-center justify-center text-[#0EA5E9] group-hover:scale-105 transition-transform">
                     <LinkedinIcon size={16} />
                   </div>
                   <div>
-                    <div className="text-xs font-bold text-white dark:text-white light:text-slate-900">
+                    <div className="text-xs font-bold text-[#EAFBFA] dark:text-[#EAFBFA] light:text-[#103039]">
                       LinkedIn
                     </div>
-                    <div className="text-[10px] font-mono text-slate-500">
+                    <div className="text-[10px] font-mono text-[#75A0A8] dark:text-[#75A0A8] light:text-[#78949B]">
                       Profile
                     </div>
                   </div>
                 </div>
-                <ExternalLink size={13} className="text-slate-500 group-hover:text-lime-400 transition-colors" />
+                <ExternalLink size={13} className="text-[#75A0A8] group-hover:text-[#0EA5E9] transition-colors" />
               </a>
 
               <a
                 href={personalInfo.github}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-4 rounded-xl bg-charcoal-card dark:bg-[#151921] light:bg-white border border-white/10 dark:border-white/10 light:border-slate-200 hover:border-lime-400/40 transition-all group flex items-center justify-between"
+                className="p-4 rounded-xl bg-[#103641] dark:bg-[#103641] light:bg-white border border-[#24505A] dark:border-[#24505A] light:border-[#CDE7E2] hover:border-sky-500/50 transition-all group flex items-center justify-between"
               >
                 <div className="flex items-center gap-2.5">
-                  <div className="w-8 h-8 rounded-lg bg-white/5 flex items-center justify-center text-slate-300 group-hover:text-lime-400 transition-colors">
+                  <div className="w-8 h-8 rounded-lg bg-sky-500/10 flex items-center justify-center text-[#0EA5E9] group-hover:scale-105 transition-transform">
                     <GithubIcon size={16} />
                   </div>
                   <div>
-                    <div className="text-xs font-bold text-white dark:text-white light:text-slate-900">
+                    <div className="text-xs font-bold text-[#EAFBFA] dark:text-[#EAFBFA] light:text-[#103039]">
                       GitHub
                     </div>
-                    <div className="text-[10px] font-mono text-slate-500">
+                    <div className="text-[10px] font-mono text-[#75A0A8] dark:text-[#75A0A8] light:text-[#78949B]">
                       Repositories
                     </div>
                   </div>
                 </div>
-                <ExternalLink size={13} className="text-slate-500 group-hover:text-lime-400 transition-colors" />
+                <ExternalLink size={13} className="text-[#75A0A8] group-hover:text-[#0EA5E9] transition-colors" />
               </a>
             </div>
 
@@ -269,25 +269,25 @@ export default function ContactSection({ isStandalonePage = false }) {
 
           {/* Right Column: Interactive Form (7 cols) */}
           <div className="lg:col-span-7">
-            <div className="rounded-2xl bg-charcoal-card dark:bg-[#151921] light:bg-white border border-white/10 dark:border-white/10 light:border-slate-200 p-6 sm:p-10 shadow-2xl relative">
+            <div className="rounded-2xl bg-[#103641] dark:bg-[#103641] light:bg-white border border-[#24505A] dark:border-[#24505A] light:border-[#CDE7E2] p-6 sm:p-10 shadow-2xl relative">
               
-              <div className="flex items-center justify-between pb-4 mb-6 border-b border-white/10 dark:border-white/10 light:border-slate-200">
+              <div className="flex items-center justify-between pb-4 mb-6 border-b border-[#24505A] dark:border-[#24505A] light:border-[#CDE7E2]">
                 <div>
-                  <h3 className="text-xl sm:text-2xl font-bold text-white dark:text-white light:text-slate-900 tracking-tight">
+                  <h3 className="text-xl sm:text-2xl font-bold text-[#EAFBFA] dark:text-[#EAFBFA] light:text-[#103039] tracking-tight">
                     Send a Message
                   </h3>
-                  <p className="text-xs text-slate-400 dark:text-slate-400 light:text-slate-500 mt-1">
+                  <p className="text-xs text-[#75A0A8] dark:text-[#75A0A8] light:text-[#527078] mt-1">
                     Fill out the fields below or select a quick topic to initiate contact.
                   </p>
                 </div>
-                <div className="w-10 h-10 rounded-xl bg-lime-400/10 text-lime-400 flex items-center justify-center border border-lime-400/20">
+                <div className="w-10 h-10 rounded-xl bg-sky-500/10 text-[#0EA5E9] flex items-center justify-center border border-sky-500/25">
                   <MessageSquare size={18} />
                 </div>
               </div>
 
               {/* Quick Topic Pills */}
               <div className="mb-6 space-y-2">
-                <span className="text-[11px] font-mono uppercase tracking-wider text-slate-400 dark:text-slate-400 light:text-slate-500">
+                <span className="text-[11px] font-mono uppercase tracking-wider text-[#75A0A8] dark:text-[#75A0A8] light:text-[#78949B]">
                   Quick Topics
                 </span>
                 <div className="flex flex-wrap gap-1.5">
@@ -298,8 +298,8 @@ export default function ContactSection({ isStandalonePage = false }) {
                       onClick={() => selectPill(pill)}
                       className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${
                         formData.subject === pill
-                          ? 'bg-lime-400 text-black font-semibold shadow-sm'
-                          : 'bg-black/30 dark:bg-[#0b0d10]/50 light:bg-slate-100 text-slate-300 dark:text-slate-300 light:text-slate-700 border border-white/5 dark:border-white/5 light:border-slate-200 hover:border-lime-400/40 hover:text-white'
+                          ? 'bg-gradient-to-r from-[#0EA5E9] to-[#14B8A6] text-slate-950 font-bold shadow-sm shadow-sky-500/20'
+                          : 'bg-[#071A22]/70 dark:bg-[#071A22]/70 light:bg-[#E2F4F1] text-[#A5C7C9] dark:text-[#A5C7C9] light:text-[#527078] border border-[#24505A]/50 dark:border-[#24505A]/50 light:border-[#CDE7E2] hover:border-sky-500/40 hover:text-[#0EA5E9]'
                       }`}
                     >
                       {pill}
@@ -310,9 +310,9 @@ export default function ContactSection({ isStandalonePage = false }) {
 
               {/* Status Confirmation Banner */}
               {status === 'prepared' && (
-                <div className="mb-6 p-4 rounded-xl bg-lime-400/10 border border-lime-400/30 flex items-start gap-3">
-                  <CheckCircle2 size={20} className="text-lime-400 shrink-0 mt-0.5" />
-                  <div className="text-xs text-lime-300 dark:text-lime-300 light:text-lime-800 space-y-2">
+                <div className="mb-6 p-4 rounded-xl bg-teal-500/10 border border-teal-500/30 flex items-start gap-3">
+                  <CheckCircle2 size={20} className="text-[#14B8A6] shrink-0 mt-0.5" />
+                  <div className="text-xs text-teal-300 dark:text-teal-300 light:text-teal-800 space-y-2">
                     <div className="font-bold text-sm">Email Client Prepared & Launched!</div>
                     <p className="leading-relaxed">
                       Your default mail program has been triggered with your pre-populated message. Just click <strong>Send</strong> in your mail application to dispatch it directly to <span className="underline">{personalInfo.email}</span>.
@@ -321,12 +321,12 @@ export default function ContactSection({ isStandalonePage = false }) {
                       <button
                         type="button"
                         onClick={handleCopyFullMessage}
-                        className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-lime-400 text-black font-semibold text-xs hover:bg-lime-300 transition-colors"
+                        className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-gradient-to-r from-[#0EA5E9] to-[#14B8A6] text-slate-950 font-bold text-xs hover:opacity-95 transition-all shadow-sm"
                       >
                         {copiedContent ? <Check size={13} /> : <Copy size={13} />}
                         <span>{copiedContent ? 'Copied Full Content!' : 'Copy Formatted Text'}</span>
                       </button>
-                      <span className="text-[11px] text-lime-400/80">
+                      <span className="text-[11px] text-[#75A0A8]">
                         (Useful if your browser does not have a default email client set)
                       </span>
                     </div>
@@ -342,9 +342,9 @@ export default function ContactSection({ isStandalonePage = false }) {
                   <div>
                     <label
                       htmlFor={`${formId}-name`}
-                      className="block text-xs font-medium text-slate-300 dark:text-slate-300 light:text-slate-700 mb-1.5"
+                      className="block text-xs font-medium text-[#EAFBFA] dark:text-[#EAFBFA] light:text-[#103039] mb-1.5"
                     >
-                      Your Full Name <span className="text-lime-400">*</span>
+                      Your Full Name <span className="text-[#0EA5E9]">*</span>
                     </label>
                     <input
                       id={`${formId}-name`}
@@ -357,10 +357,10 @@ export default function ContactSection({ isStandalonePage = false }) {
                       placeholder="e.g. John Doe"
                       aria-invalid={errors.name ? 'true' : 'false'}
                       aria-describedby={errors.name ? `${formId}-name-err` : undefined}
-                      className={`w-full px-4 py-3 rounded-xl bg-black/40 dark:bg-[#0b0d10]/60 light:bg-slate-50 border text-xs text-slate-100 dark:text-slate-100 light:text-slate-900 placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-lime-400 transition-all ${
+                      className={`w-full px-4 py-3 rounded-xl bg-[#071A22]/70 dark:bg-[#071A22]/70 light:bg-[#F0FAF9] border text-xs text-[#EAFBFA] dark:text-[#EAFBFA] light:text-[#103039] placeholder:text-[#75A0A8] dark:placeholder:text-[#75A0A8] light:placeholder:text-[#78949B] focus:outline-none focus:ring-2 focus:ring-sky-400 transition-all ${
                         errors.name
                           ? 'border-red-500'
-                          : 'border-white/10 dark:border-white/10 light:border-slate-300'
+                          : 'border-[#24505A] dark:border-[#24505A] light:border-[#CDE7E2]'
                       }`}
                     />
                     {errors.name && (
@@ -375,9 +375,9 @@ export default function ContactSection({ isStandalonePage = false }) {
                   <div>
                     <label
                       htmlFor={`${formId}-email`}
-                      className="block text-xs font-medium text-slate-300 dark:text-slate-300 light:text-slate-700 mb-1.5"
+                      className="block text-xs font-medium text-[#EAFBFA] dark:text-[#EAFBFA] light:text-[#103039] mb-1.5"
                     >
-                      Your Email Address <span className="text-lime-400">*</span>
+                      Your Email Address <span className="text-[#0EA5E9]">*</span>
                     </label>
                     <input
                       id={`${formId}-email`}
@@ -390,10 +390,10 @@ export default function ContactSection({ isStandalonePage = false }) {
                       placeholder="e.g. john@organization.com"
                       aria-invalid={errors.email ? 'true' : 'false'}
                       aria-describedby={errors.email ? `${formId}-email-err` : undefined}
-                      className={`w-full px-4 py-3 rounded-xl bg-black/40 dark:bg-[#0b0d10]/60 light:bg-slate-50 border text-xs text-slate-100 dark:text-slate-100 light:text-slate-900 placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-lime-400 transition-all ${
+                      className={`w-full px-4 py-3 rounded-xl bg-[#071A22]/70 dark:bg-[#071A22]/70 light:bg-[#F0FAF9] border text-xs text-[#EAFBFA] dark:text-[#EAFBFA] light:text-[#103039] placeholder:text-[#75A0A8] dark:placeholder:text-[#75A0A8] light:placeholder:text-[#78949B] focus:outline-none focus:ring-2 focus:ring-sky-400 transition-all ${
                         errors.email
                           ? 'border-red-500'
-                          : 'border-white/10 dark:border-white/10 light:border-slate-300'
+                          : 'border-[#24505A] dark:border-[#24505A] light:border-[#CDE7E2]'
                       }`}
                     />
                     {errors.email && (
@@ -409,9 +409,9 @@ export default function ContactSection({ isStandalonePage = false }) {
                 <div>
                   <label
                     htmlFor={`${formId}-subject`}
-                    className="block text-xs font-medium text-slate-300 dark:text-slate-300 light:text-slate-700 mb-1.5"
+                    className="block text-xs font-medium text-[#EAFBFA] dark:text-[#EAFBFA] light:text-[#103039] mb-1.5"
                   >
-                    Subject <span className="text-lime-400">*</span>
+                    Subject <span className="text-[#0EA5E9]">*</span>
                   </label>
                   <input
                     id={`${formId}-subject`}
@@ -424,10 +424,10 @@ export default function ContactSection({ isStandalonePage = false }) {
                     placeholder="e.g. Full-Stack / Generative AI Role Discussion"
                     aria-invalid={errors.subject ? 'true' : 'false'}
                     aria-describedby={errors.subject ? `${formId}-subj-err` : undefined}
-                    className={`w-full px-4 py-3 rounded-xl bg-black/40 dark:bg-[#0b0d10]/60 light:bg-slate-50 border text-xs text-slate-100 dark:text-slate-100 light:text-slate-900 placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-lime-400 transition-all ${
+                    className={`w-full px-4 py-3 rounded-xl bg-[#071A22]/70 dark:bg-[#071A22]/70 light:bg-[#F0FAF9] border text-xs text-[#EAFBFA] dark:text-[#EAFBFA] light:text-[#103039] placeholder:text-[#75A0A8] dark:placeholder:text-[#75A0A8] light:placeholder:text-[#78949B] focus:outline-none focus:ring-2 focus:ring-sky-400 transition-all ${
                       errors.subject
                         ? 'border-red-500'
-                        : 'border-white/10 dark:border-white/10 light:border-slate-300'
+                        : 'border-[#24505A] dark:border-[#24505A] light:border-[#CDE7E2]'
                     }`}
                   />
                   {errors.subject && (
@@ -443,11 +443,11 @@ export default function ContactSection({ isStandalonePage = false }) {
                   <div className="flex items-center justify-between mb-1.5">
                     <label
                       htmlFor={`${formId}-message`}
-                      className="block text-xs font-medium text-slate-300 dark:text-slate-300 light:text-slate-700"
+                      className="block text-xs font-medium text-[#EAFBFA] dark:text-[#EAFBFA] light:text-[#103039]"
                     >
-                      Message Details <span className="text-lime-400">*</span>
+                      Message Details <span className="text-[#0EA5E9]">*</span>
                     </label>
-                    <span className="text-[10px] font-mono text-slate-500">
+                    <span className="text-[10px] font-mono text-[#75A0A8]">
                       {formData.message.length} chars
                     </span>
                   </div>
@@ -462,10 +462,10 @@ export default function ContactSection({ isStandalonePage = false }) {
                     placeholder="Describe your project vision, role requirements, or question..."
                     aria-invalid={errors.message ? 'true' : 'false'}
                     aria-describedby={errors.message ? `${formId}-msg-err` : undefined}
-                    className={`w-full px-4 py-3 rounded-xl bg-black/40 dark:bg-[#0b0d10]/60 light:bg-slate-50 border text-xs text-slate-100 dark:text-slate-100 light:text-slate-900 placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-lime-400 transition-all resize-none ${
+                    className={`w-full px-4 py-3 rounded-xl bg-[#071A22]/70 dark:bg-[#071A22]/70 light:bg-[#F0FAF9] border text-xs text-[#EAFBFA] dark:text-[#EAFBFA] light:text-[#103039] placeholder:text-[#75A0A8] dark:placeholder:text-[#75A0A8] light:placeholder:text-[#78949B] focus:outline-none focus:ring-2 focus:ring-sky-400 transition-all resize-none ${
                       errors.message
                         ? 'border-red-500'
-                        : 'border-white/10 dark:border-white/10 light:border-slate-300'
+                        : 'border-[#24505A] dark:border-[#24505A] light:border-[#CDE7E2]'
                     }`}
                   />
                   {errors.message && (
@@ -481,7 +481,7 @@ export default function ContactSection({ isStandalonePage = false }) {
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className="w-full flex items-center justify-center gap-2 py-3.5 rounded-xl bg-lime-400 text-black font-bold text-xs uppercase tracking-wider hover:bg-lime-300 disabled:opacity-60 disabled:cursor-not-allowed transition-all shadow-lg shadow-lime-500/20 active:scale-[0.99] focus:outline-none focus-visible:ring-2 focus-visible:ring-lime-400"
+                    className="w-full flex items-center justify-center gap-2 py-3.5 rounded-xl bg-gradient-to-r from-[#0EA5E9] via-[#14B8A6] to-[#84CC16] text-slate-950 font-bold text-xs uppercase tracking-wider hover:opacity-95 disabled:opacity-60 disabled:cursor-not-allowed transition-all shadow-lg shadow-sky-500/20 active:scale-[0.99] focus:outline-none focus-visible:ring-2 focus-visible:ring-sky-400"
                   >
                     {isSubmitting ? (
                       <>
@@ -498,10 +498,10 @@ export default function ContactSection({ isStandalonePage = false }) {
                 </div>
 
                 {/* Technical Delivery Integrity Notice */}
-                <div className="pt-3 border-t border-white/5 dark:border-white/5 light:border-slate-200 flex items-start gap-2 text-[11px] text-slate-400 dark:text-slate-400 light:text-slate-500 leading-snug">
-                  <Sparkles size={13} className="text-lime-400 shrink-0 mt-0.5" />
+                <div className="pt-3 border-t border-[#24505A]/40 dark:border-[#24505A]/40 light:border-[#CDE7E2] flex items-start gap-2 text-[11px] text-[#75A0A8] dark:text-[#75A0A8] light:text-[#527078] leading-snug">
+                  <Sparkles size={13} className="text-[#0EA5E9] shrink-0 mt-0.5" />
                   <span>
-                    Direct transmission: Your inquiry pre-populates in your default email client addressed to <strong className="text-slate-200 dark:text-slate-200 light:text-slate-800">{personalInfo.email}</strong>, ensuring genuine delivery with no unauthenticated web scraping.
+                    Direct transmission: Your inquiry pre-populates in your default email client addressed to <strong className="text-[#EAFBFA] dark:text-[#EAFBFA] light:text-[#103039]">{personalInfo.email}</strong>, ensuring genuine delivery with no unauthenticated web scraping.
                   </span>
                 </div>
 

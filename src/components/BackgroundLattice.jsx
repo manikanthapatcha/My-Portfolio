@@ -82,11 +82,11 @@ export default function BackgroundLattice() {
       ctx.clearRect(0, 0, width, height);
 
       const light = isLightMode();
-      const nodeColor = light ? 'rgba(15, 23, 42, 0.16)' : 'rgba(255, 255, 255, 0.22)';
-      const lineColor = light ? 'rgba(15, 23, 42, 0.04)' : 'rgba(255, 255, 255, 0.035)';
-      const limeLineColor = light ? 'rgba(101, 163, 13, 0.28)' : 'rgba(132, 204, 22, 0.24)';
+      const nodeColor = light ? 'rgba(82, 112, 120, 0.25)' : 'rgba(165, 199, 201, 0.35)';
+      const lineColor = light ? 'rgba(205, 231, 226, 0.6)' : 'rgba(36, 80, 90, 0.4)';
+      const activeLineColor = light ? 'rgba(20, 184, 166, 0.42)' : 'rgba(14, 165, 233, 0.38)';
 
-      // Restrained lime cursor glow
+      // Ocean Breeze cursor glow (Blue / Teal)
       if (mouse.x > 0 && mouse.y > 0) {
         const gradient = ctx.createRadialGradient(
           mouse.x,
@@ -96,7 +96,7 @@ export default function BackgroundLattice() {
           mouse.y,
           mouse.radius * 1.8
         );
-        gradient.addColorStop(0, light ? 'rgba(132, 204, 22, 0.07)' : 'rgba(132, 204, 22, 0.055)');
+        gradient.addColorStop(0, light ? 'rgba(20, 184, 166, 0.09)' : 'rgba(14, 165, 233, 0.085)');
         gradient.addColorStop(1, 'transparent');
         ctx.fillStyle = gradient;
         ctx.beginPath();
@@ -153,7 +153,7 @@ export default function BackgroundLattice() {
             const distToMouse = Math.hypot(drawX - mouse.x, drawY - mouse.y);
             const isNearMouse = distToMouse < mouse.radius;
 
-            ctx.strokeStyle = isNearMouse ? limeLineColor : lineColor;
+            ctx.strokeStyle = isNearMouse ? activeLineColor : lineColor;
             ctx.lineWidth = isNearMouse ? 1.1 : 0.6;
             ctx.beginPath();
             ctx.moveTo(drawX, drawY);
@@ -181,13 +181,15 @@ export default function BackgroundLattice() {
 
   return (
     <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden" aria-hidden="true">
-      <div className="absolute inset-0 bg-grid-lattice opacity-40 dark:opacity-20" />
+      <div className="absolute inset-0 bg-grid-lattice opacity-45 dark:opacity-30" />
       <canvas
         ref={canvasRef}
         className="absolute inset-0 w-full h-full"
       />
-      {/* Top ambient spotlight */}
-      <div className="absolute -top-40 left-1/2 -translate-x-1/2 w-[700px] h-[400px] bg-lime-500/5 dark:bg-lime-400/5 blur-[120px] rounded-full pointer-events-none" />
+      {/* Ocean Breeze ambient spotlights (Blue, Teal, Turquoise) */}
+      <div className="absolute -top-40 left-1/2 -translate-x-1/2 w-[720px] h-[400px] bg-sky-500/10 dark:bg-sky-500/10 blur-[125px] rounded-full pointer-events-none" />
+      <div className="absolute top-1/3 -right-24 w-[520px] h-[420px] bg-teal-500/7 dark:bg-teal-400/8 blur-[135px] rounded-full pointer-events-none" />
+      <div className="absolute -bottom-40 left-1/4 w-[600px] h-[350px] bg-cyan-500/6 dark:bg-teal-500/7 blur-[140px] rounded-full pointer-events-none" />
     </div>
   );
 }
