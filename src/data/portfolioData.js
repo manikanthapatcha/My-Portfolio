@@ -19,7 +19,7 @@ export const personalInfo = {
   languages: ["English", "Telugu", "Hindi"],
   bio: "Computer Science and Data Science undergraduate with hands-on experience in full-stack development, Generative AI, and deep learning. Skilled in building RESTful APIs, AI-powered applications, and machine learning prototypes.",
   stats: [
-    { label: "Substantial Projects", value: "05" },
+    { label: "Substantial Projects", value: "04" },
     { label: "Production Stack", value: "MERN + AI" },
     { label: "B.Tech CGPA", value: "8.34/10" },
     { label: "Internship", value: "PurpleLane" },
