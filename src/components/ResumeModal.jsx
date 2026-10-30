@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { X, Printer, Download, Copy, Check, FileText, MapPin, Phone, Mail, Globe } from 'lucide-react';
+import { X, Printer, Download, Copy, Check, FileText, MapPin, Phone, Mail, Globe, ExternalLink } from 'lucide-react';
 import { personalInfo, experience, education, projects, certifications, achievements } from '../data/portfolioData';
 
 export default function ResumeModal({ isOpen, onClose }) {
@@ -85,17 +85,12 @@ Technologies: React.js, Vite, Tailwind CSS, Node.js, Express.js, MongoDB Native 
 • Integrated semantic product search, AI-generated product descriptions, and multimodal image-based product listing.
 • Built AI customer support, a RAG-based policy assistant, and an AI blog-generation workflow with human review.
 
-3. NEPTUNE-CXR — Deep Learning-Based Chest X-Ray Disease Probability Detection
-Technologies: Python, PyTorch, DenseNet121, FastAPI, React.js, Vite, Tailwind CSS, Node.js, Express.js, MongoDB, Grad-CAM
-• Developed a deep learning prototype estimating probabilities across 14 thoracic disease categories from chest X-ray images.
-• Implemented image preprocessing, probability visualization, Grad-CAM heatmaps, report storage, and an analytics dashboard.
-
-4. LegalGenie — AI-Powered Legal Research Assistant
+3. LegalGenie — AI-Powered Legal Research Assistant
 Technologies: React.js, Node.js, Express.js, MongoDB, LangChain, ChromaDB, Gemini AI, REST APIs
 • Developed semantic search and RAG-based legal research for retrieving relevant cases and generating contextual answers.
 • Implemented PDF ingestion, document processing, vector retrieval, and AI-generated case summaries and briefs.
 
-5. Order Management System
+4. Order Management System
 Technologies: React.js, Node.js, Express.js, MongoDB, Material UI, CSS, REST APIs
 • Developed a full-stack application for product, customer, inventory, and order management.
 • Implemented CRUD operations, RESTful APIs, order status tracking, database integration, and error handling.
@@ -368,10 +363,22 @@ ADDITIONAL INFORMATION
             </h2>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5 text-xs">
               {certifications.map((cert, idx) => (
-                <div key={idx} className="p-2.5 rounded-lg bg-black/30 dark:bg-black/30 light:bg-slate-50 border border-white/5 dark:border-white/5 light:border-slate-200">
-                  <div className="font-bold text-white dark:text-white light:text-slate-900">{cert.title}</div>
-                  <div className="text-[11px] text-lime-400 font-mono">— {cert.issuer}</div>
-                </div>
+                <a
+                  key={idx}
+                  href={cert.image}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="p-2.5 rounded-lg bg-black/30 dark:bg-black/30 light:bg-slate-50 border border-white/5 dark:border-white/5 light:border-slate-200 hover:border-lime-400/40 hover:bg-black/50 transition-all group block"
+                  title={`View ${cert.title} Certificate`}
+                >
+                  <div className="flex items-center justify-between gap-1">
+                    <span className="font-bold text-white dark:text-white light:text-slate-900 group-hover:text-lime-400 transition-colors">
+                      {cert.title}
+                    </span>
+                    <ExternalLink size={12} className="text-slate-500 group-hover:text-lime-400 transition-colors shrink-0" />
+                  </div>
+                  <div className="text-[11px] text-lime-400 font-mono mt-0.5">— {cert.issuer}</div>
+                </a>
               ))}
             </div>
           </section>

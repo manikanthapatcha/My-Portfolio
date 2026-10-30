@@ -135,61 +135,6 @@ export const projects = [
     featured: true,
   },
   {
-    id: "neptune-cxr",
-    title: "NEPTUNE-CXR",
-    tagline: "Deep Learning-Based Chest X-Ray Disease Probability Detection",
-    category: "Deep Learning",
-    badge: "Deep Learning & CV",
-    projectType: "Academic Research Prototype (Deep Learning & Computer Vision)",
-    summary:
-      "A deep learning computer vision research prototype leveraging transfer learning with DenseNet121 and Grad-CAM heatmaps to estimate probabilities across 14 thoracic disease categories from chest radiography.",
-    problemSolved:
-      "Preliminary radiographic triage in emergency settings requires fast, explainable multi-label thoracic screening, but deep neural networks are often treated as uninterpretable black boxes by clinicians.",
-    intendedUsers:
-      "Educational researchers, computational biology students, and medical imaging researchers exploring transfer learning and visual explainability.",
-    technologies: [
-      "Python",
-      "PyTorch",
-      "DenseNet121",
-      "FastAPI",
-      "React.js",
-      "Vite",
-      "Tailwind CSS",
-      "Node.js",
-      "Express.js",
-      "MongoDB",
-      "Grad-CAM",
-    ],
-    highlights: [
-      "Developed a deep learning prototype estimating probabilities across 14 thoracic disease categories from chest X-ray images.",
-      "Implemented image preprocessing, probability visualization, Grad-CAM heatmaps, report storage, and an analytics dashboard.",
-    ],
-    architecture:
-      "PyTorch DenseNet121 backbone fine-tuned on chest radiography datasets, served through an asynchronous FastAPI inference microservice. Grad-CAM computes gradients at the final convolutional feature layer to synthesize visual heatmaps that map activations back onto the input image coordinates.",
-    keyDecisions: [
-      "Leveraged a DenseNet121 architecture pretrained on ImageNet and fine-tuned on multi-label chest radiography datasets, capitalizing on dense connectivity for feature propagation.",
-      "Integrated Grad-CAM (Gradient-weighted Class Activation Mapping) at the final convolutional feature maps to project gradient heatmaps back onto radiographic lung fields.",
-      "Built an asynchronous FastAPI microservice backend to isolate PyTorch GPU/CPU inference from the client dashboard.",
-    ],
-    securityAndPerformance: [
-      "Image normalization and tensor transformation pipelines ensure strict input dimension and contrast consistency.",
-      "Clearly flagged with visible academic disclaimers: 'Research prototype for educational and experimental research purposes. Not approved for clinical diagnostics.'",
-      "Asynchronous inference queue prevents worker timeouts during tensor processing.",
-    ],
-    challenges:
-      "Handling extreme class imbalance across 14 multi-label thoracic categories without model collapse. Solved by implementing positive-weighted binary cross-entropy loss and data augmentation (random rotation, contrast normalization).",
-    limitationsAndFutureWork: [
-      "Evaluated on experimental benchmark datasets; not validated on clinical PACS hospital workflows.",
-      "Future iteration: Integration with DICOM medical standard viewers and multi-view (lateral + frontal) paired inference.",
-    ],
-    disclaimer:
-      "Research prototype developed for educational and experimental research purposes. Not clinically validated or approved as a medical diagnostic system.",
-    githubUrl: "https://github.com/manikanthapatcha",
-    liveDemoUrl: null,
-    isPrototype: true,
-    featured: true,
-  },
-  {
     id: "legalgenie",
     title: "LegalGenie",
     tagline: "AI-Powered Legal Research Assistant",
@@ -434,22 +379,41 @@ export const education = [
 
 export const certifications = [
   {
+    id: "mern-stack",
     title: "MERN Stack",
-    issuer: "PurpleLane",
-    period: "2026",
+    issuer: "PurpleLane & SASI",
+    period: "2025",
+    issueDate: "18-10-2025",
+    credentialType: "Certificate of Completion",
     description: "Full-stack web application development covering MongoDB, Express.js, React.js, and Node.js.",
+    image: "/images/certificates/cert-mern-stack.jpg",
+    verificationNote: "ISO 9001:2015 Certified Workshop",
   },
   {
+    id: "generative-ai",
     title: "Generative AI",
+    subtitle: "Mastering GenAI: Building AI-Powered Applications",
     issuer: "PurpleLane",
     period: "2026",
+    issueDate: "03-01-2026",
+    credentialType: "Certificate of Participation",
     description: "Hands-on implementation of LLMs, prompt engineering, RAG pipelines, and agentic workflows.",
+    image: "/images/certificates/cert-generative-ai.jpg",
+    verificationNote: "MSME & Skill India Recognized (ISO 9001:2015)",
   },
   {
+    id: "python-data-science",
     title: "Python 101 for Data Science",
+    subtitle: "PY0101EN — Powered by IBM Developer Skills Network",
     issuer: "IBM SkillsBuild",
-    period: "2024",
+    period: "2025",
+    issueDate: "July 16, 2025",
+    credentialType: "Course Certificate of Completion",
     description: "Core Python programming, data manipulation, logic construction, and data analysis fundamentals.",
+    image: "/images/certificates/cert-python-data-science.jpg",
+    pdfUrl: "/images/certificates/cert-python-data-science.pdf",
+    verificationUrl: "https://courses.skillsbuild.skillsnetwork.site/certificates/d7b2258bc9534189a777af584d53a589",
+    credentialId: "d7b2258bc9534189a777af584d53a589",
   },
 ];
 

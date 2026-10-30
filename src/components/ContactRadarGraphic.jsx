@@ -1,6 +1,6 @@
 export default function ContactRadarGraphic() {
   return (
-    <div className="relative w-full aspect-square max-w-[280px] sm:max-w-[320px] mx-auto flex items-center justify-center select-none" aria-hidden="true">
+    <div className="relative w-full aspect-square max-w-[240px] xs:max-w-[270px] sm:max-w-[320px] mx-auto flex items-center justify-center select-none" aria-hidden="true">
       {/* Outer ambient glow */}
       <div className="absolute inset-0 rounded-full bg-lime-500/10 dark:bg-lime-400/5 blur-2xl pointer-events-none" />
 

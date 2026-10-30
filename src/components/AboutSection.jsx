@@ -41,7 +41,7 @@ export default function AboutSection() {
               </p>
 
               <p>
-                Through projects like <strong className="text-lime-400 dark:text-lime-400 light:text-lime-600 font-semibold">ShopMate</strong> and <strong className="text-lime-400 dark:text-lime-400 light:text-lime-600 font-semibold">LegalGenie</strong>, I have worked directly with Pinecone and ChromaDB for vector retrieval, LangChain and LangGraph for structured agent workflows, and Google Gemini API for multimodal reasoning. In computer vision, my research prototype <strong className="text-lime-400 dark:text-lime-400 light:text-lime-600 font-semibold">NEPTUNE-CXR</strong> explores PyTorch DenseNet121 inference paired with Grad-CAM visual heatmaps.
+                Through projects like <strong className="text-lime-400 dark:text-lime-400 light:text-lime-600 font-semibold">ShopMate</strong> and <strong className="text-lime-400 dark:text-lime-400 light:text-lime-600 font-semibold">LegalGenie</strong>, I have worked directly with Pinecone and ChromaDB for vector retrieval, LangChain and LangGraph for structured agent workflows, and Google Gemini API for multimodal reasoning.
               </p>
 
               <div className="pt-4 grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">

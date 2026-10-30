@@ -28,7 +28,6 @@ Designed with an Obsidian/Charcoal/Lime editorial aesthetic inspired by modern d
    - **ShopMate**: AI-powered e-commerce platform integrating Pinecone vector search, Gemini listing generation, and LangChain/LangGraph customer support agents.
    - **Student Intelligence**: AI-powered student assistant utilizing a locally hosted Llama 3.2 model via Ollama for private, zero-cloud conversational academic guidance.
    - **LegalGenie**: AI legal research assistant with PDF ingestion, ChromaDB vector indexing, and citation-backed RAG question answering.
-   - **NEPTUNE-CXR**: Deep learning chest radiography prototype using PyTorch DenseNet121 and Grad-CAM interpretability heatmaps (with prominent non-clinical prototype disclaimer).
    - **Order Management System**: Full-stack MERN business operations platform with atomic inventory tracking.
 
 3. **Interactive Radial Skills Constellation**:

@@ -95,14 +95,14 @@ function ProjectCard({ project, index }) {
       </div>
 
       {/* Card Footer Actions */}
-      <div className="relative z-10 mt-8 pt-5 border-t border-white/10 dark:border-white/10 light:border-slate-200 flex flex-wrap items-center justify-between gap-3">
-        <div className="flex items-center gap-3">
+      <div className="relative z-10 mt-8 pt-5 border-t border-white/10 dark:border-white/10 light:border-slate-200 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+        <div className="flex flex-wrap items-center gap-2.5 w-full sm:w-auto">
           {project.liveDemoUrl ? (
             <a
               href={project.liveDemoUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-lime-400 text-black font-bold text-xs uppercase tracking-wider hover:bg-lime-300 active:scale-95 transition-all shadow-md shadow-lime-500/20 focus:outline-none focus-visible:ring-2 focus-visible:ring-lime-400"
+              className="inline-flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-xl bg-lime-400 text-black font-bold text-xs uppercase tracking-wider hover:bg-lime-300 active:scale-95 transition-all shadow-md shadow-lime-500/20 focus:outline-none focus-visible:ring-2 focus-visible:ring-lime-400 min-h-[44px] flex-1 sm:flex-initial"
               title={`Launch ${project.title} live on Vercel`}
             >
               <span>Launch App</span>
@@ -111,7 +111,7 @@ function ProjectCard({ project, index }) {
           ) : (
             <Link
               to={`/projects/${project.id}`}
-              className="inline-flex items-center gap-1.5 text-xs font-semibold text-lime-400 hover:text-lime-300 hover:underline transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-lime-400 rounded-md"
+              className="inline-flex items-center justify-center gap-1.5 text-xs font-semibold text-lime-400 hover:text-lime-300 hover:underline transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-lime-400 rounded-md py-2 px-1 min-h-[44px]"
             >
               <span>Case Study</span>
               <ArrowUpRight size={14} />
@@ -121,27 +121,27 @@ function ProjectCard({ project, index }) {
           {project.liveDemoUrl && (
             <Link
               to={`/projects/${project.id}`}
-              className="inline-flex items-center gap-1 text-xs font-medium text-slate-400 hover:text-white transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-lime-400 rounded-md"
+              className="inline-flex items-center justify-center gap-1 text-xs font-medium text-slate-400 hover:text-white transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-lime-400 rounded-md py-2 px-2 min-h-[44px]"
             >
               <span>Architecture Details</span>
             </Link>
           )}
         </div>
 
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-2 self-start sm:self-auto">
           {project.githubUrl ? (
             <a
               href={project.githubUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 text-xs font-mono text-slate-300 hover:text-white px-3 py-1.5 rounded-lg bg-white/5 dark:bg-white/5 light:bg-slate-100 hover:bg-white/10 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-lime-400"
+              className="inline-flex items-center justify-center gap-1.5 text-xs font-mono text-slate-300 hover:text-white px-3.5 py-2 rounded-lg bg-white/5 dark:bg-white/5 light:bg-slate-100 hover:bg-white/10 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-lime-400 min-h-[44px]"
               aria-label={`${project.title} GitHub Repository`}
             >
-              <GithubIcon size={13} />
+              <GithubIcon size={14} />
               <span>Code</span>
             </a>
           ) : (
-            <span className="text-[11px] font-mono text-slate-500">Private / Local</span>
+            <span className="text-[11px] font-mono text-slate-500 py-2">Private / Local</span>
           )}
         </div>
       </div>

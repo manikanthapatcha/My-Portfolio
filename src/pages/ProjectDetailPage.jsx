@@ -112,13 +112,13 @@ export default function ProjectDetailPage() {
           </p>
 
           {/* Action links */}
-          <div className="mt-8 pt-6 border-t border-white/10 dark:border-white/10 light:border-slate-200 flex flex-wrap items-center gap-4">
+          <div className="mt-8 pt-6 border-t border-white/10 dark:border-white/10 light:border-slate-200 flex flex-col sm:flex-row flex-wrap items-stretch sm:items-center gap-3 sm:gap-4">
             {project.liveDemoUrl && (
               <a
                 href={project.liveDemoUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-6 py-2.5 rounded-xl bg-lime-400 text-black hover:bg-lime-300 text-xs font-bold uppercase tracking-wider transition-all shadow-lg shadow-lime-500/20 active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-lime-400"
+                className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-lime-400 text-black hover:bg-lime-300 text-xs font-bold uppercase tracking-wider transition-all shadow-lg shadow-lime-500/20 active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-lime-400 min-h-[44px]"
               >
                 <ExternalLink size={15} />
                 <span>Launch Live Application</span>
@@ -130,18 +130,18 @@ export default function ProjectDetailPage() {
                 href={project.githubUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-white/10 dark:bg-white/10 light:bg-slate-100 hover:bg-white/20 text-white dark:text-white light:text-slate-900 text-xs font-semibold transition-all font-mono active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-lime-400"
+                className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-white/10 dark:bg-white/10 light:bg-slate-100 hover:bg-white/20 text-white dark:text-white light:text-slate-900 text-xs font-semibold transition-all font-mono active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-lime-400 min-h-[44px]"
               >
                 <GithubIcon size={15} />
                 <span>View Source Repository</span>
               </a>
             ) : (
-              <span className="px-4 py-2 rounded-xl bg-white/5 text-slate-500 text-xs font-mono">
+              <span className="px-4 py-2.5 rounded-xl bg-white/5 text-slate-500 text-xs font-mono text-center">
                 Repository Status: Local / Private
               </span>
             )}
 
-            <div className="text-xs font-mono text-slate-500">
+            <div className="text-xs font-mono text-slate-500 text-center sm:text-left sm:ml-auto">
               Verified by Sai Ganesh Patcha
             </div>
           </div>
@@ -149,7 +149,7 @@ export default function ProjectDetailPage() {
 
         {/* Prototype Alert if applicable */}
         {project.disclaimer && (
-          <div className="mb-10 p-5 rounded-2xl bg-amber-500/10 border border-amber-500/30 flex items-start gap-3">
+          <div className="mb-10 p-4 sm:p-5 rounded-2xl bg-amber-500/10 border border-amber-500/30 flex items-start gap-3">
             <AlertTriangle size={20} className="text-amber-400 shrink-0 mt-0.5" />
             <div className="text-xs text-amber-300 dark:text-amber-300 light:text-amber-800 space-y-1">
               <div className="font-bold uppercase tracking-wider text-[11px] font-mono">
@@ -162,8 +162,12 @@ export default function ProjectDetailPage() {
           </div>
         )}
 
-        {/* Interactive Case Study Tabs */}
-        <div className="flex border-b border-white/10 dark:border-white/10 light:border-slate-200 mb-8 overflow-x-auto">
+        {/* Interactive Case Study Tabs - Mobile Horizontal Scroll with Touch */}
+        <div 
+          className="flex border-b border-white/10 dark:border-white/10 light:border-slate-200 mb-8 overflow-x-auto pb-1 scroll-smooth"
+          role="tablist"
+          aria-label="Project Case Study Sections"
+        >
           {[
             { id: 'overview', label: '1. Overview & Features' },
             { id: 'architecture', label: '2. Architecture & Design' },
@@ -173,8 +177,10 @@ export default function ProjectDetailPage() {
           ].map((tab) => (
             <button
               key={tab.id}
+              role="tab"
+              aria-selected={activeTab === tab.id}
               onClick={() => setActiveTab(tab.id)}
-              className={`px-5 py-3 text-xs font-mono uppercase tracking-wider transition-all border-b-2 whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-lime-400 ${
+              className={`px-4 sm:px-5 py-3 text-xs font-mono uppercase tracking-wider transition-all border-b-2 whitespace-nowrap min-h-[44px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-lime-400 ${
                 activeTab === tab.id
                   ? 'border-lime-400 text-lime-400 font-bold'
                   : 'border-transparent text-slate-400 hover:text-slate-200 hover:border-slate-500'
@@ -246,11 +252,11 @@ export default function ProjectDetailPage() {
                 <span>Architectural Overview & Data Flow</span>
               </h3>
 
-              <div className="p-5 rounded-xl bg-black/50 dark:bg-[#0b0d10]/80 light:bg-slate-900 text-slate-200 font-mono text-xs leading-relaxed border border-white/10">
-                <div className="text-[11px] uppercase tracking-wider text-lime-400 mb-2">
+              <div className="p-4 sm:p-5 rounded-xl bg-black/50 dark:bg-[#0b0d10]/80 light:bg-slate-900 text-slate-200 font-mono text-xs leading-relaxed border border-white/10 break-words overflow-x-auto">
+                <div className="text-[11px] uppercase tracking-wider text-lime-400 mb-2 font-bold">
                   // Workflow Pipeline & Data Flow
                 </div>
-                <p>{project.architecture}</p>
+                <p className="whitespace-pre-wrap">{project.architecture}</p>
               </div>
 
               {/* Architectural Highlights */}

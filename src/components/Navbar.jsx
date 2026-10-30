@@ -19,8 +19,27 @@ export default function Navbar({ onOpenResume }) {
       setScrolled(window.scrollY > 20);
     };
 
+    const handleResize = () => {
+      if (window.innerWidth >= 768) {
+        setMobileMenuOpen(false);
+      }
+    };
+
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape') {
+        setMobileMenuOpen(false);
+      }
+    };
+
     window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener('resize', handleResize, { passive: true });
+    window.addEventListener('keydown', handleKeyDown);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('resize', handleResize);
+      window.removeEventListener('keydown', handleKeyDown);
+    };
   }, []);
 
   const toggleTheme = () => {
@@ -78,7 +97,10 @@ export default function Navbar({ onOpenResume }) {
           </Link>
 
           {/* Desktop Nav Links */}
-          <nav className="hidden md:flex items-center gap-1 bg-charcoal-card/80 dark:bg-[#151921]/80 light:bg-slate-100/90 border border-white/10 dark:border-white/10 light:border-slate-200 rounded-full px-4 py-1.5 backdrop-blur-md">
+          <nav 
+            className="hidden md:flex items-center gap-1 bg-charcoal-card/80 dark:bg-[#151921]/80 light:bg-slate-100/90 border border-white/10 dark:border-white/10 light:border-slate-200 rounded-full px-4 py-1.5 backdrop-blur-md"
+            aria-label="Main Navigation"
+          >
             {navLinks.map((link) => (
               <a
                 key={link.name}
@@ -90,16 +112,16 @@ export default function Navbar({ onOpenResume }) {
             ))}
           </nav>
 
-          {/* Right Action Controls */}
-          <div className="hidden sm:flex items-center gap-3">
+          {/* Right Action Controls (Desktop: >= md) */}
+          <div className="hidden md:flex items-center gap-3">
             {/* Theme Toggle */}
             <button
               onClick={toggleTheme}
-              className="w-9 h-9 rounded-full bg-charcoal-card dark:bg-[#151921] light:bg-slate-100 border border-white/10 dark:border-white/10 light:border-slate-300 flex items-center justify-center text-slate-300 dark:text-slate-300 light:text-slate-700 hover:text-lime-400 hover:border-lime-400/40 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-lime-400"
+              className="w-10 h-10 rounded-full bg-charcoal-card dark:bg-[#151921] light:bg-slate-100 border border-white/10 dark:border-white/10 light:border-slate-300 flex items-center justify-center text-slate-300 dark:text-slate-300 light:text-slate-700 hover:text-lime-400 hover:border-lime-400/40 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-lime-400"
               aria-label={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
               title={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
             >
-              {theme === 'dark' ? <Sun size={16} /> : <Moon size={16} />}
+              {theme === 'dark' ? <Sun size={17} /> : <Moon size={17} />}
             </button>
 
             {/* Social quick links */}
@@ -107,7 +129,7 @@ export default function Navbar({ onOpenResume }) {
               href={personalInfo.github}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-9 h-9 rounded-full bg-charcoal-card dark:bg-[#151921] light:bg-slate-100 border border-white/10 dark:border-white/10 light:border-slate-300 flex items-center justify-center text-slate-300 dark:text-slate-300 light:text-slate-700 hover:text-lime-400 hover:border-lime-400/40 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-lime-400"
+              className="w-10 h-10 rounded-full bg-charcoal-card dark:bg-[#151921] light:bg-slate-100 border border-white/10 dark:border-white/10 light:border-slate-300 flex items-center justify-center text-slate-300 dark:text-slate-300 light:text-slate-700 hover:text-lime-400 hover:border-lime-400/40 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-lime-400"
               aria-label="GitHub Profile"
               title="GitHub Profile"
             >
@@ -118,7 +140,7 @@ export default function Navbar({ onOpenResume }) {
               href={personalInfo.linkedin}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-9 h-9 rounded-full bg-charcoal-card dark:bg-[#151921] light:bg-slate-100 border border-white/10 dark:border-white/10 light:border-slate-300 flex items-center justify-center text-slate-300 dark:text-slate-300 light:text-slate-700 hover:text-lime-400 hover:border-lime-400/40 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-lime-400"
+              className="w-10 h-10 rounded-full bg-charcoal-card dark:bg-[#151921] light:bg-slate-100 border border-white/10 dark:border-white/10 light:border-slate-300 flex items-center justify-center text-slate-300 dark:text-slate-300 light:text-slate-700 hover:text-lime-400 hover:border-lime-400/40 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-lime-400"
               aria-label="LinkedIn Profile"
               title="LinkedIn Profile"
             >
@@ -128,68 +150,84 @@ export default function Navbar({ onOpenResume }) {
             {/* Resume Button */}
             <button
               onClick={onOpenResume}
-              className="flex items-center gap-2 px-3.5 py-1.5 text-xs font-semibold rounded-full bg-lime-400/10 text-lime-400 border border-lime-400/30 hover:bg-lime-400 hover:text-black transition-all duration-200 shadow-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-lime-400"
+              className="flex items-center gap-2 px-4 py-2 text-xs font-semibold rounded-full bg-lime-400/10 text-lime-400 border border-lime-400/30 hover:bg-lime-400 hover:text-black transition-all duration-200 shadow-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-lime-400 min-h-[40px]"
             >
               <FileText size={14} />
               <span>Resume</span>
             </button>
           </div>
 
-          {/* Mobile Menu Button */}
-          <div className="flex items-center gap-2 sm:hidden">
+          {/* Mobile Actions & Menu Toggle (< md) */}
+          <div className="flex items-center gap-2 md:hidden">
+            {/* Quick Resume Button on Mobile */}
             <button
-              onClick={toggleTheme}
-              className="w-9 h-9 rounded-full bg-charcoal-card dark:bg-[#151921] light:bg-slate-100 border border-white/10 flex items-center justify-center text-slate-300"
-              aria-label="Toggle theme"
+              onClick={onOpenResume}
+              className="flex items-center gap-1.5 px-3 py-2 text-xs font-semibold rounded-full bg-lime-400/10 text-lime-400 border border-lime-400/30 hover:bg-lime-400 hover:text-black transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-lime-400 min-h-[44px]"
+              aria-label="View Resume"
             >
-              {theme === 'dark' ? <Sun size={15} /> : <Moon size={15} />}
+              <FileText size={14} />
+              <span className="hidden xs:inline">Resume</span>
             </button>
 
+            {/* Theme Toggle */}
+            <button
+              onClick={toggleTheme}
+              className="w-11 h-11 rounded-xl bg-charcoal-card dark:bg-[#151921] light:bg-slate-100 border border-white/10 flex items-center justify-center text-slate-300 hover:text-lime-400 active:scale-95 transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-lime-400"
+              aria-label={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
+            >
+              {theme === 'dark' ? <Sun size={17} /> : <Moon size={17} />}
+            </button>
+
+            {/* Hamburger / Close Toggle */}
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="w-9 h-9 rounded-lg bg-charcoal-card dark:bg-[#151921] light:bg-slate-100 border border-white/10 flex items-center justify-center text-slate-300 hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-lime-400"
+              className="w-11 h-11 rounded-xl bg-charcoal-card dark:bg-[#151921] light:bg-slate-100 border border-white/10 flex items-center justify-center text-slate-300 hover:text-white active:scale-95 transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-lime-400"
               aria-label={mobileMenuOpen ? 'Close menu' : 'Open menu'}
               aria-expanded={mobileMenuOpen}
+              aria-controls="mobile-navigation"
             >
-              {mobileMenuOpen ? <X size={18} /> : <Menu size={18} />}
+              {mobileMenuOpen ? <X size={20} className="text-lime-400" /> : <Menu size={20} />}
             </button>
           </div>
         </div>
       </div>
 
-      {/* Mobile Drawer */}
+      {/* Mobile Navigation Drawer */}
       {mobileMenuOpen && (
-        <div className="sm:hidden fixed inset-x-0 top-16 bg-[#0b0d10]/95 light:bg-white/95 backdrop-blur-xl border-b border-white/10 light:border-slate-200 px-6 py-6 shadow-2xl transition-all">
-          <nav className="flex flex-col gap-3">
+        <div
+          id="mobile-navigation"
+          className="md:hidden fixed inset-x-0 top-full bg-[#0b0d10]/95 dark:bg-[#0b0d10]/95 light:bg-white/95 backdrop-blur-2xl border-b border-white/10 dark:border-white/10 light:border-slate-200 px-5 py-6 shadow-2xl transition-all max-h-[calc(100vh-4.5rem)] overflow-y-auto"
+        >
+          <nav className="flex flex-col gap-2" aria-label="Mobile Navigation Links">
             {navLinks.map((link) => (
               <a
                 key={link.name}
                 href={link.href}
                 onClick={() => setMobileMenuOpen(false)}
-                className="px-4 py-2.5 rounded-lg text-sm font-medium text-slate-300 light:text-slate-700 hover:bg-white/5 light:hover:bg-slate-100 hover:text-lime-400 transition-colors"
+                className="flex items-center px-4 py-3 rounded-xl text-sm font-semibold text-slate-200 dark:text-slate-200 light:text-slate-800 hover:bg-white/5 dark:hover:bg-white/5 light:hover:bg-slate-100 hover:text-lime-400 transition-colors min-h-[44px] focus:outline-none focus-visible:ring-2 focus-visible:ring-lime-400"
               >
                 {link.name}
               </a>
             ))}
 
-            <div className="pt-4 border-t border-white/10 light:border-slate-200 flex flex-col gap-3">
+            <div className="pt-4 mt-2 border-t border-white/10 dark:border-white/10 light:border-slate-200 flex flex-col gap-3">
               <button
                 onClick={() => {
                   setMobileMenuOpen(false);
                   onOpenResume();
                 }}
-                className="w-full flex items-center justify-center gap-2 py-2.5 rounded-lg bg-lime-400 text-black font-semibold text-sm hover:bg-lime-300 transition-colors"
+                className="w-full flex items-center justify-center gap-2 py-3 rounded-xl bg-lime-400 text-black font-bold text-sm hover:bg-lime-300 active:scale-[0.98] transition-all shadow-md shadow-lime-500/20 min-h-[44px]"
               >
                 <FileText size={16} />
-                <span>View Resume</span>
+                <span>View Full Resume</span>
               </button>
 
-              <div className="flex items-center justify-around pt-2">
+              <div className="grid grid-cols-2 gap-3 pt-2">
                 <a
                   href={personalInfo.github}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-1.5 text-xs text-slate-400 hover:text-lime-400"
+                  className="flex items-center justify-center gap-2 py-2.5 px-3 rounded-xl bg-white/5 dark:bg-white/5 light:bg-slate-100 text-xs font-mono text-slate-300 dark:text-slate-300 light:text-slate-700 hover:text-lime-400 min-h-[44px]"
                 >
                   <GithubIcon size={15} />
                   <span>GitHub</span>
@@ -199,7 +237,7 @@ export default function Navbar({ onOpenResume }) {
                   href={personalInfo.linkedin}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-1.5 text-xs text-slate-400 hover:text-lime-400"
+                  className="flex items-center justify-center gap-2 py-2.5 px-3 rounded-xl bg-white/5 dark:bg-white/5 light:bg-slate-100 text-xs font-mono text-slate-300 dark:text-slate-300 light:text-slate-700 hover:text-lime-400 min-h-[44px]"
                 >
                   <LinkedinIcon size={15} />
                   <span>LinkedIn</span>

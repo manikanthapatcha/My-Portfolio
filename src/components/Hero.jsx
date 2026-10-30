@@ -10,7 +10,7 @@ function HeroPortrait() {
     <div className="flex justify-center lg:justify-end w-full">
       <div
         ref={portraitRef}
-        className="tilt-card relative group w-full max-w-[290px] sm:max-w-[330px] md:max-w-[360px] lg:max-w-[380px]"
+        className="tilt-card relative group w-full max-w-[250px] xs:max-w-[280px] sm:max-w-[320px] md:max-w-[340px] lg:max-w-[380px]"
       >
         {/* Subtle Ambient Lime Glow */}
         <div 
@@ -40,12 +40,12 @@ function HeroPortrait() {
             />
 
             {/* Bottom Status Overlay */}
-            <div className="absolute bottom-3 left-3 right-3 p-2.5 rounded-xl bg-black/70 dark:bg-black/75 light:bg-white/90 backdrop-blur-md border border-white/10 dark:border-white/10 light:border-slate-300 flex items-center justify-between text-xs">
-              <span className="flex items-center gap-1.5 font-mono text-[11px] text-lime-400 dark:text-lime-400 light:text-lime-600 font-semibold">
-                <span className="w-2 h-2 rounded-full bg-lime-400 animate-pulse" />
-                <span>Intern @ PurpleLane</span>
+            <div className="absolute bottom-2.5 left-2.5 right-2.5 sm:bottom-3 sm:left-3 sm:right-3 p-2 sm:p-2.5 rounded-xl bg-black/75 dark:bg-black/80 light:bg-white/95 backdrop-blur-md border border-white/10 dark:border-white/10 light:border-slate-300 flex items-center justify-between text-xs">
+              <span className="flex items-center gap-1.5 font-mono text-[10px] sm:text-[11px] text-lime-400 dark:text-lime-400 light:text-lime-600 font-semibold truncate mr-2">
+                <span className="w-1.5 h-1.5 rounded-full bg-lime-400 animate-pulse shrink-0" />
+                <span className="truncate">Intern @ PurpleLane</span>
               </span>
-              <span className="text-[10px] font-mono text-slate-300 dark:text-slate-300 light:text-slate-700">
+              <span className="text-[9px] sm:text-[10px] font-mono text-slate-300 dark:text-slate-300 light:text-slate-700 shrink-0">
                 B.Tech CSE (DS)
               </span>
             </div>
@@ -63,39 +63,39 @@ export default function Hero({ onOpenResume }) {
   const contactBtnRef = useMagnetic({ strength: 0.2, max: 4 });
 
   return (
-    <section id="overview" className="relative pt-32 pb-20 sm:pt-40 sm:pb-28 overflow-hidden">
+    <section id="overview" className="relative pt-28 pb-16 sm:pt-36 sm:pb-24 lg:pt-40 lg:pb-28 overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Main Hero Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
           
           {/* Left Column: Heading and CTAs (7 cols) */}
-          <div className="lg:col-span-7 space-y-6 text-center lg:text-left flex flex-col items-center lg:items-start">
+          <div className="lg:col-span-7 space-y-5 sm:space-y-6 text-center lg:text-left flex flex-col items-center lg:items-start w-full">
             
             {/* Top Status & Location Pill */}
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-charcoal-card/90 dark:bg-[#151921]/90 light:bg-white border border-white/10 dark:border-white/10 light:border-slate-300 text-xs text-slate-300 dark:text-slate-300 light:text-slate-700 backdrop-blur-md shadow-sm transition-all hover:border-lime-400/40">
-              <span className="flex h-2 w-2 relative">
+            <div className="inline-flex flex-wrap items-center justify-center gap-2 px-3.5 py-1.5 rounded-full bg-charcoal-card/90 dark:bg-[#151921]/90 light:bg-white border border-white/10 dark:border-white/10 light:border-slate-300 text-xs text-slate-300 dark:text-slate-300 light:text-slate-700 backdrop-blur-md shadow-sm transition-all hover:border-lime-400/40 max-w-full">
+              <span className="flex h-2 w-2 relative shrink-0">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-lime-400 opacity-75" />
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-lime-500" />
               </span>
-              <span className="font-mono text-lime-400 dark:text-lime-400 light:text-lime-600 font-semibold tracking-wide">
+              <span className="font-mono text-lime-400 dark:text-lime-400 light:text-lime-600 font-semibold tracking-wide text-[11px] sm:text-xs">
                 {personalInfo.badge}
               </span>
-              <span className="text-slate-600 dark:text-slate-600 light:text-slate-300">|</span>
-              <span className="flex items-center gap-1 text-slate-400 dark:text-slate-400 light:text-slate-500">
-                <MapPin size={12} className="text-lime-400/80" />
-                {personalInfo.location}
+              <span className="text-slate-600 dark:text-slate-600 light:text-slate-300 hidden xs:inline">|</span>
+              <span className="flex items-center gap-1 text-slate-400 dark:text-slate-400 light:text-slate-500 text-[11px] sm:text-xs">
+                <MapPin size={12} className="text-lime-400/80 shrink-0" />
+                <span className="truncate">{personalInfo.location}</span>
               </span>
             </div>
 
             {/* Introduction Line */}
-            <div className="text-base sm:text-lg font-mono font-bold text-lime-400 dark:text-lime-400 light:text-lime-600 tracking-wide flex items-center gap-2">
+            <div className="text-sm sm:text-base lg:text-lg font-mono font-bold text-lime-400 dark:text-lime-400 light:text-lime-600 tracking-wide flex items-center gap-2">
               <span className="hidden lg:inline-block w-5 h-px bg-lime-400" />
               <span>Hi, I&apos;m Sai Ganesh.</span>
             </div>
 
-            {/* Orchestrated Headline Entrance */}
-            <h1 className="text-4xl sm:text-5xl md:text-6xl font-black tracking-tight text-white dark:text-white light:text-slate-900 leading-[1.08]">
+            {/* Fluid Orchestrated Headline */}
+            <h1 className="text-3xl xs:text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight text-white dark:text-white light:text-slate-900 leading-[1.1] sm:leading-[1.08] break-words max-w-2xl">
               <span className="inline-block animate-word-1">Full-Stack Developer</span>{' '}
               <span className="inline-block animate-word-2 text-transparent bg-clip-text bg-gradient-to-r from-lime-400 via-lime-300 to-emerald-400">
                 & AI Engineer
@@ -103,16 +103,16 @@ export default function Hero({ onOpenResume }) {
             </h1>
 
             {/* Subheadline Description */}
-            <p className="text-base sm:text-lg text-slate-300 dark:text-slate-300 light:text-slate-600 leading-relaxed max-w-xl font-normal">
+            <p className="text-sm sm:text-base lg:text-lg text-slate-300 dark:text-slate-300 light:text-slate-600 leading-relaxed max-w-xl font-normal">
               Building intelligent applications and practical AI-powered systems.
             </p>
 
-            {/* Magnetic CTAs */}
-            <div className="pt-2 flex flex-wrap items-center justify-center lg:justify-start gap-4">
+            {/* Magnetic CTAs - Stack on narrow mobile, horizontal on sm+ */}
+            <div className="pt-2 flex flex-col sm:flex-row items-stretch sm:items-center justify-center lg:justify-start gap-3 sm:gap-4 w-full sm:w-auto">
               <a
                 ref={exploreBtnRef}
                 href="#projects"
-                className="magnetic-btn inline-flex items-center gap-2 px-6 py-3.5 rounded-xl bg-lime-400 text-black font-bold text-sm hover:bg-lime-300 active:scale-95 transition-all shadow-lg shadow-lime-500/20 focus:outline-none focus-visible:ring-2 focus-visible:ring-lime-400"
+                className="magnetic-btn inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-lime-400 text-black font-bold text-sm hover:bg-lime-300 active:scale-95 transition-all shadow-lg shadow-lime-500/20 focus:outline-none focus-visible:ring-2 focus-visible:ring-lime-400 min-h-[44px]"
               >
                 <span>Explore Projects ↗</span>
                 <ArrowRight size={16} />
@@ -121,7 +121,7 @@ export default function Hero({ onOpenResume }) {
               <button
                 ref={resumeBtnRef}
                 onClick={onOpenResume}
-                className="magnetic-btn inline-flex items-center gap-2 px-5 py-3.5 rounded-xl bg-charcoal-card dark:bg-[#151921] light:bg-white text-slate-200 dark:text-slate-200 light:text-slate-800 border border-white/10 dark:border-white/10 light:border-slate-300 font-semibold text-sm hover:border-lime-400/50 hover:text-lime-400 active:scale-95 transition-all shadow-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-lime-400"
+                className="magnetic-btn inline-flex items-center justify-center gap-2 px-5 py-3.5 rounded-xl bg-charcoal-card dark:bg-[#151921] light:bg-white text-slate-200 dark:text-slate-200 light:text-slate-800 border border-white/10 dark:border-white/10 light:border-slate-300 font-semibold text-sm hover:border-lime-400/50 hover:text-lime-400 active:scale-95 transition-all shadow-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-lime-400 min-h-[44px]"
               >
                 <Download size={16} />
                 <span>View Resume</span>
@@ -130,7 +130,7 @@ export default function Hero({ onOpenResume }) {
               <a
                 ref={contactBtnRef}
                 href="#contact"
-                className="magnetic-btn inline-flex items-center gap-2 px-5 py-3.5 rounded-xl text-slate-300 dark:text-slate-300 light:text-slate-700 hover:text-white dark:hover:text-white light:hover:text-black font-medium text-sm transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-lime-400"
+                className="magnetic-btn inline-flex items-center justify-center gap-2 px-5 py-3.5 rounded-xl text-slate-300 dark:text-slate-300 light:text-slate-700 hover:text-white dark:hover:text-white light:hover:text-black font-medium text-sm transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-lime-400 min-h-[44px]"
               >
                 <Mail size={16} />
                 <span>Contact Me</span>
@@ -138,13 +138,13 @@ export default function Hero({ onOpenResume }) {
             </div>
 
             {/* Verified External Social Links */}
-            <div className="pt-2 flex flex-wrap items-center justify-center lg:justify-start gap-4 sm:gap-6 text-xs text-slate-400 dark:text-slate-400 light:text-slate-500 font-mono">
+            <div className="pt-2 flex flex-wrap items-center justify-center lg:justify-start gap-3 sm:gap-5 text-xs text-slate-400 dark:text-slate-400 light:text-slate-500 font-mono">
               <span className="text-[11px] uppercase tracking-wider text-slate-500">Connect:</span>
               <a
                 href={personalInfo.github}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 hover:text-lime-400 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-lime-400 rounded-md px-1 py-0.5"
+                className="inline-flex items-center gap-1.5 hover:text-lime-400 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-lime-400 rounded-md px-2 py-1.5 min-h-[44px]"
                 aria-label="GitHub Profile"
               >
                 <GithubIcon size={15} />
@@ -154,7 +154,7 @@ export default function Hero({ onOpenResume }) {
                 href={personalInfo.linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 hover:text-lime-400 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-lime-400 rounded-md px-1 py-0.5"
+                className="inline-flex items-center gap-1.5 hover:text-lime-400 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-lime-400 rounded-md px-2 py-1.5 min-h-[44px]"
                 aria-label="LinkedIn Profile"
               >
                 <LinkedinIcon size={15} />
@@ -163,7 +163,7 @@ export default function Hero({ onOpenResume }) {
               {personalInfo.phone && (
                 <a
                   href={`tel:${personalInfo.phone}`}
-                  className="inline-flex items-center gap-1.5 hover:text-lime-400 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-lime-400 rounded-md px-1 py-0.5"
+                  className="inline-flex items-center gap-1.5 hover:text-lime-400 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-lime-400 rounded-md px-2 py-1.5 min-h-[44px]"
                   aria-label="Phone"
                 >
                   <Phone size={13} className="text-lime-400/80" />
@@ -174,22 +174,22 @@ export default function Hero({ onOpenResume }) {
           </div>
 
           {/* Right Column: Hero Portrait (5 cols) */}
-          <div className="lg:col-span-5 flex justify-center">
+          <div className="lg:col-span-5 flex justify-center w-full">
             <HeroPortrait />
           </div>
         </div>
 
         {/* Bento Stat Strip */}
-        <div className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-4">
+        <div className="mt-12 sm:mt-16 grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4">
           {personalInfo.stats.map((stat, i) => (
             <div
               key={i}
-              className="p-4 sm:p-5 rounded-xl bg-charcoal-card/70 dark:bg-[#151921]/70 light:bg-white border border-white/10 dark:border-white/10 light:border-slate-200 backdrop-blur-md hover:border-lime-500/40 hover:-translate-y-0.5 transition-all duration-200 group text-center sm:text-left"
+              className="p-3.5 sm:p-5 rounded-xl bg-charcoal-card/70 dark:bg-[#151921]/70 light:bg-white border border-white/10 dark:border-white/10 light:border-slate-200 backdrop-blur-md hover:border-lime-500/40 hover:-translate-y-0.5 transition-all duration-200 group text-center sm:text-left"
             >
               <div className="text-2xl sm:text-3xl font-extrabold tracking-tight font-mono text-lime-400 dark:text-lime-400 light:text-lime-600 group-hover:scale-105 transition-transform origin-left inline-block">
                 {stat.value}
               </div>
-              <div className="text-xs text-slate-400 dark:text-slate-400 light:text-slate-500 mt-1 font-medium">
+              <div className="text-[11px] sm:text-xs text-slate-400 dark:text-slate-400 light:text-slate-500 mt-1 font-medium leading-tight">
                 {stat.label}
               </div>
             </div>
