@@ -293,6 +293,22 @@ html.light .tilt-card::before {
   animation: orbit-counter 30s linear infinite;
 }
 
+/* Satellite node entrance animation */
+@keyframes node-in {
+  0% {
+    opacity: 0;
+    transform: scale(0.75);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.animate-node-in {
+  animation: node-in 0.35s cubic-bezier(0.16, 1, 0.3, 1) backwards;
+}
+
 /* Reduced motion preference */
 @media (prefers-reduced-motion: reduce) {
   *, ::before, ::after {
@@ -301,7 +317,7 @@ html.light .tilt-card::before {
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
-  .animate-orbit-slow, .animate-orbit-reverse, .animate-word-1, .animate-word-2, .animate-word-3 {
+  .animate-orbit-slow, .animate-orbit-reverse, .animate-word-1, .animate-word-2, .animate-word-3, .animate-node-in {
     animation: none !important;
     opacity: 1 !important;
     transform: none !important;

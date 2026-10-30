@@ -1,101 +1,102 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import {
   Brain,
+  Code2,
   Layout,
   Server,
   Database,
   Wrench,
-  Sparkles,
-  Layers,
-  Code,
-  Link as LinkIcon,
-  Bot,
-  Terminal,
-  Cpu,
-  Table,
-  HardDrive,
-  GitBranch,
-  Send,
-  Zap,
-  Lock,
-  Atom,
-  Palette,
-  FileCode,
-  Boxes,
-  Compass,
-  ArrowLeftRight,
-  GitFork,
-  FileSearch,
-  Triangle,
-  Cloud,
 } from 'lucide-react';
-import { GithubIcon } from './SocialIcons';
 import { skillCategories } from '../data/portfolioData';
+import { isReducedMotionPreferred } from '../hooks/useMotion';
+import { TechLogo } from './TechLogos';
 
-// Icon resolver mapping
-const iconMap = {
+// Category Icon resolver mapping
+const categoryIconMap = {
   Brain,
+  Code2,
   Layout,
   Server,
   Database,
   Wrench,
-  Sparkles,
-  Layers,
-  Code,
-  Link: LinkIcon,
-  Bot,
-  Terminal,
-  Cpu,
-  Table,
-  Github: GithubIcon,
-  HardDrive,
-  GitBranch,
-  Send,
-  Zap,
-  Lock,
-  Atom,
-  Palette,
-  FileCode,
-  Boxes,
-  Compass,
-  ArrowLeftRight,
-  GitFork,
-  FileSearch,
-  Triangle,
-  Cloud,
 };
+
+const ROTATION_INTERVAL = 2000; // Exactly 2000ms
 
 export default function SkillsConstellation() {
   const [activeCategoryIndex, setActiveCategoryIndex] = useState(0);
   const [hoveredSkill, setHoveredSkill] = useState(null);
   const [selectedSkill, setSelectedSkill] = useState(null);
   const [isSwitching, setIsSwitching] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
+  const [isTabHidden, setIsTabHidden] = useState(false);
 
   const activeCategory = skillCategories[activeCategoryIndex];
   const skills = activeCategory.skills;
 
-  // Currently inspected skill (hovered or selected or first)
+  // Currently inspected skill (hovered or selected or first in category)
   const currentSkill = hoveredSkill || selectedSkill || skills[0];
 
-  // Icon for category
-  const CategoryIcon = iconMap[activeCategory.icon] || Brain;
+  // Category Icon component
+  const CategoryIcon = categoryIconMap[activeCategory.icon] || Brain;
 
-  const handleCategoryChange = (idx) => {
+  // Listen to browser tab visibility to pause when inactive
+  useEffect(() => {
+    const handleVisibilityChange = () => {
+      setIsTabHidden(document.hidden);
+    };
+    document.addEventListener('visibilitychange', handleVisibilityChange);
+    return () => {
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
+    };
+  }, []);
+
+  // Automatic category rotation every 2 seconds
+  useEffect(() => {
+    // Respect user's reduced-motion preference
+    if (isReducedMotionPreferred()) return;
+
+    // Pause rotation if hovering or browser tab is hidden
+    if (isHovered || isTabHidden) return;
+
+    const timer = setInterval(() => {
+      if (document.hidden) return;
+
+      setIsSwitching(true);
+      setActiveCategoryIndex((prev) => (prev + 1) % skillCategories.length);
+      setHoveredSkill(null);
+      setSelectedSkill(null);
+
+      setTimeout(() => {
+        setIsSwitching(false);
+      }, 200);
+    }, ROTATION_INTERVAL);
+
+    return () => clearInterval(timer);
+  }, [isHovered, isTabHidden, activeCategoryIndex]);
+
+  // Manual category switch (click immediately updates & resets interval for next cycle)
+  const handleCategoryClick = (idx) => {
     if (idx === activeCategoryIndex) return;
     setIsSwitching(true);
+    setActiveCategoryIndex(idx);
     setHoveredSkill(null);
     setSelectedSkill(null);
     setTimeout(() => {
-      setActiveCategoryIndex(idx);
       setIsSwitching(false);
-    }, 150);
+    }, 200);
   };
 
   return (
-    <section id="skills" className="py-20 sm:py-24 relative z-10 border-t border-[#24505A]/40 dark:border-[#24505A]/40 light:border-[#CDE7E2] overflow-hidden">
+    <section
+      id="skills"
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+      className="py-20 sm:py-24 relative z-10 border-t border-[#24505A]/40 dark:border-[#24505A]/40 light:border-[#CDE7E2] overflow-hidden"
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
-        {/* Header */}
+        {/* Section Header */}
         <div className="text-center max-w-2xl mx-auto mb-10 sm:mb-12">
           <div className="text-xs font-mono uppercase tracking-widest text-[#0EA5E9] dark:text-[#0EA5E9] light:text-[#0284C7] mb-2 font-semibold">
             Radial Constellation
@@ -106,19 +107,29 @@ export default function SkillsConstellation() {
           <p className="text-[#75A0A8] dark:text-[#75A0A8] light:text-[#527078] text-xs sm:text-base mt-2 leading-relaxed">
             Select an engineering domain to orbit through technologies, libraries, and frameworks applied across full-stack and Generative AI systems.
           </p>
+
+          {/* Autoplay / Pause Status Indicator */}
+          <div className="mt-3 inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#103641]/70 dark:bg-[#103641]/70 light:bg-white border border-[#24505A]/40 dark:border-[#24505A]/40 light:border-[#CDE7E2] text-[11px] font-mono text-[#75A0A8] dark:text-[#75A0A8] light:text-[#527078] shadow-sm">
+            <span
+              className={`w-1.5 h-1.5 rounded-full transition-colors ${
+                isHovered ? 'bg-[#75A0A8]' : 'bg-[#14B8A6] animate-pulse'
+              }`}
+            />
+            <span>{isHovered ? 'Autoplay Paused (Hovering)' : 'Auto-Rotating · 2s Interval'}</span>
+          </div>
         </div>
 
         {/* Category Navigation Pills */}
         <div className="flex flex-wrap justify-center items-center gap-2 mb-8 sm:mb-12" role="tablist" aria-label="Skill Categories">
           {skillCategories.map((cat, idx) => {
-            const Icon = iconMap[cat.icon] || Brain;
+            const Icon = categoryIconMap[cat.icon] || Brain;
             const isActive = idx === activeCategoryIndex;
             return (
               <button
                 key={cat.id}
                 role="tab"
                 aria-selected={isActive}
-                onClick={() => handleCategoryChange(idx)}
+                onClick={() => handleCategoryClick(idx)}
                 style={
                   isActive
                     ? {
@@ -136,7 +147,7 @@ export default function SkillsConstellation() {
               >
                 <Icon size={15} />
                 <span>{cat.name}</span>
-                <span className={`text-[10px] px-1.5 py-0.5 rounded-full ${
+                <span className={`text-[10px] px-1.5 py-0.5 rounded-full transition-colors ${
                   isActive ? 'bg-black/20 text-slate-950 font-bold' : 'bg-black/30 dark:bg-black/30 light:bg-[#E2F4F1] text-[#75A0A8] dark:text-[#75A0A8] light:text-[#527078]'
                 }`}>
                   {cat.skills.length}
@@ -155,7 +166,7 @@ export default function SkillsConstellation() {
             {/* Ambient Background Circles */}
             <div
               className={`relative w-[460px] lg:w-[500px] h-[460px] lg:h-[500px] flex items-center justify-center origin-center transition-all duration-300 ${
-                isSwitching ? 'opacity-30 scale-95' : 'opacity-100 scale-100'
+                isSwitching ? 'opacity-40 scale-95' : 'opacity-100 scale-100'
               }`}
             >
 
@@ -165,7 +176,7 @@ export default function SkillsConstellation() {
               {/* Orbit 2 */}
               <div 
                 style={{ borderColor: `${activeCategory.color}35` }}
-                className="absolute w-[330px] lg:w-[360px] h-[330px] lg:h-[360px] rounded-full border border-dashed pointer-events-none transition-colors duration-300" 
+                className="absolute w-[330px] lg:w-[360px] h-[330px] lg:h-[360px] rounded-full border border-dashed pointer-events-none transition-colors duration-400" 
               />
 
               {/* Inner Orbit 1 */}
@@ -175,7 +186,7 @@ export default function SkillsConstellation() {
               <div 
                 style={{
                   borderColor: activeCategory.color,
-                  boxShadow: `0 0 35px -5px ${activeCategory.color}30`,
+                  boxShadow: `0 0 35px -5px ${activeCategory.color}35`,
                 }}
                 className="relative z-20 w-32 h-32 rounded-full bg-[#103641] dark:bg-[#103641] light:bg-white border-2 text-center flex flex-col items-center justify-center p-3 group cursor-default transition-all duration-300"
               >
@@ -184,16 +195,16 @@ export default function SkillsConstellation() {
                     backgroundColor: `${activeCategory.color}20`,
                     color: activeCategory.color,
                   }}
-                  className="w-10 h-10 rounded-full flex items-center justify-center mb-1"
+                  className="w-10 h-10 rounded-full flex items-center justify-center mb-1 transition-colors duration-300"
                 >
                   <CategoryIcon size={20} />
                 </div>
-                <span className="text-xs font-bold text-[#EAFBFA] dark:text-[#EAFBFA] light:text-[#103039] leading-tight">
+                <span className="text-xs font-bold text-[#EAFBFA] dark:text-[#EAFBFA] light:text-[#103039] leading-tight transition-colors duration-300">
                   {activeCategory.shortName}
                 </span>
                 <span 
                   style={{ color: activeCategory.color }}
-                  className="text-[10px] font-mono font-semibold"
+                  className="text-[10px] font-mono font-semibold transition-colors duration-300"
                 >
                   {skills.length} Techs
                 </span>
@@ -209,12 +220,11 @@ export default function SkillsConstellation() {
                 const x = Math.cos(angle) * radius;
                 const y = Math.sin(angle) * radius;
 
-                const SkillIcon = iconMap[skill.icon] || Code;
                 const isSelected = currentSkill?.name === skill.name;
 
                 return (
                   <button
-                    key={skill.name}
+                    key={`${activeCategory.id}-${skill.name}`}
                     type="button"
                     style={{
                       transform: `translate(${x}px, ${y}px)`,
@@ -235,28 +245,27 @@ export default function SkillsConstellation() {
                     }`}
                   >
                     <div
-                      style={
-                        isSelected
+                      style={{
+                        animationDelay: `${index * 40}ms`,
+                        ...(isSelected
                           ? {
                               backgroundColor: activeCategory.color,
                               borderColor: activeCategory.color,
                               color: '#071A22',
                               boxShadow: `0 4px 18px ${activeCategory.color}45`,
                             }
-                          : undefined
-                      }
-                      className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl border backdrop-blur-md shadow-lg transition-all ${
+                          : undefined),
+                      }}
+                      className={`flex items-center gap-2 px-3 py-1.5 rounded-xl border backdrop-blur-md shadow-lg transition-all animate-node-in ${
                         isSelected
                           ? 'font-bold'
                           : 'bg-[#103641]/90 dark:bg-[#103641]/90 light:bg-white text-[#EAFBFA] dark:text-[#EAFBFA] light:text-[#103039] border-[#24505A] dark:border-[#24505A] light:border-[#CDE7E2] hover:border-sky-400/60'
                       }`}
                     >
-                      <SkillIcon 
-                        size={14} 
-                        style={!isSelected ? { color: activeCategory.color } : undefined} 
-                        className={isSelected ? 'text-slate-950' : ''} 
-                      />
-                      <span className="text-xs tracking-tight whitespace-nowrap">
+                      <div className="shrink-0 flex items-center justify-center">
+                        <TechLogo name={skill.name} size={15} />
+                      </div>
+                      <span className="text-xs tracking-tight whitespace-nowrap font-medium">
                         {skill.name}
                       </span>
                     </div>
@@ -280,25 +289,25 @@ export default function SkillsConstellation() {
               <div 
                 style={{
                   borderColor: activeCategory.color,
-                  boxShadow: `0 0 25px -4px ${activeCategory.color}30`,
+                  boxShadow: `0 0 25px -4px ${activeCategory.color}35`,
                 }}
-                className="relative z-10 w-28 h-28 rounded-full bg-[#103641] dark:bg-[#103641] light:bg-white border-2 text-center flex flex-col items-center justify-center p-2.5"
+                className="relative z-10 w-28 h-28 rounded-full bg-[#103641] dark:bg-[#103641] light:bg-white border-2 text-center flex flex-col items-center justify-center p-2.5 transition-all duration-300"
               >
                 <div 
                   style={{
                     backgroundColor: `${activeCategory.color}20`,
                     color: activeCategory.color,
                   }}
-                  className="w-8 h-8 rounded-full flex items-center justify-center mb-1"
+                  className="w-8 h-8 rounded-full flex items-center justify-center mb-1 transition-colors duration-300"
                 >
                   <CategoryIcon size={18} />
                 </div>
-                <span className="text-xs font-bold text-[#EAFBFA] dark:text-[#EAFBFA] light:text-[#103039]">
+                <span className="text-xs font-bold text-[#EAFBFA] dark:text-[#EAFBFA] light:text-[#103039] transition-colors duration-300">
                   {activeCategory.shortName}
                 </span>
                 <span 
                   style={{ color: activeCategory.color }}
-                  className="text-[10px] font-mono font-semibold"
+                  className="text-[10px] font-mono font-semibold transition-colors duration-300"
                 >
                   {skills.length} Technologies
                 </span>
@@ -312,7 +321,6 @@ export default function SkillsConstellation() {
               </div>
               <div className="grid grid-cols-2 xs:grid-cols-3 gap-2 w-full">
                 {skills.map((skill) => {
-                  const SkillIcon = iconMap[skill.icon] || Code;
                   const isSelected = currentSkill?.name === skill.name;
                   return (
                     <button
@@ -335,11 +343,9 @@ export default function SkillsConstellation() {
                           : 'bg-[#103641] dark:bg-[#103641] light:bg-white text-[#EAFBFA] dark:text-[#EAFBFA] light:text-[#103039] border-[#24505A] dark:border-[#24505A] light:border-[#CDE7E2] hover:border-sky-400/50'
                       }`}
                     >
-                      <SkillIcon 
-                        size={14} 
-                        style={!isSelected ? { color: activeCategory.color } : undefined} 
-                        className={isSelected ? 'text-slate-950 shrink-0' : 'shrink-0'} 
-                      />
+                      <div className="shrink-0 flex items-center justify-center">
+                        <TechLogo name={skill.name} size={15} />
+                      </div>
                       <span className="truncate">{skill.name}</span>
                     </button>
                   );
@@ -350,7 +356,7 @@ export default function SkillsConstellation() {
 
           {/* Right Column: Active Domain Summary & Detailed Breakdown */}
           <div className="lg:col-span-4 space-y-4 w-full">
-            <div className="rounded-2xl bg-[#103641] dark:bg-[#103641] light:bg-white border border-[#24505A] dark:border-[#24505A] light:border-[#CDE7E2] p-5 sm:p-6 shadow-xl">
+            <div className="rounded-2xl bg-[#103641] dark:bg-[#103641] light:bg-white border border-[#24505A] dark:border-[#24505A] light:border-[#CDE7E2] p-5 sm:p-6 shadow-xl transition-all duration-300">
 
               <div className="flex items-center gap-3 mb-3">
                 <div 
@@ -359,15 +365,15 @@ export default function SkillsConstellation() {
                     borderColor: `${activeCategory.color}40`,
                     color: activeCategory.color,
                   }}
-                  className="w-10 h-10 rounded-xl border flex items-center justify-center shrink-0"
+                  className="w-10 h-10 rounded-xl border flex items-center justify-center shrink-0 transition-colors duration-300"
                 >
                   <CategoryIcon size={20} />
                 </div>
                 <div>
-                  <h3 className="text-base sm:text-lg font-bold text-[#EAFBFA] dark:text-[#EAFBFA] light:text-[#103039] tracking-tight">
+                  <h3 className="text-base sm:text-lg font-bold text-[#EAFBFA] dark:text-[#EAFBFA] light:text-[#103039] tracking-tight transition-colors duration-300">
                     {activeCategory.name}
                   </h3>
-                  <p className="text-xs text-[#75A0A8] dark:text-[#75A0A8] light:text-[#527078]">
+                  <p className="text-xs text-[#75A0A8] dark:text-[#75A0A8] light:text-[#527078] transition-colors duration-300">
                     {activeCategory.description}
                   </p>
                 </div>
@@ -379,20 +385,25 @@ export default function SkillsConstellation() {
                   style={{ borderColor: `${activeCategory.color}40` }}
                   className="mt-4 p-3.5 rounded-xl bg-[#071A22]/60 dark:bg-[#071A22]/60 light:bg-[#E2F4F1]/70 border transition-all"
                 >
-                  <div className="flex items-center justify-between mb-1">
-                    <span 
-                      style={{ color: activeCategory.color }}
-                      className="text-xs font-bold font-mono"
-                    >
-                      {currentSkill.name}
-                    </span>
+                  <div className="flex items-center justify-between mb-1.5">
+                    <div className="flex items-center gap-2">
+                      <div className="w-6 h-6 rounded-md bg-[#103641] dark:bg-[#103641] light:bg-white border border-[#24505A]/50 dark:border-[#24505A]/50 light:border-[#CDE7E2] flex items-center justify-center shrink-0 shadow-sm">
+                        <TechLogo name={currentSkill.name} size={16} />
+                      </div>
+                      <span 
+                        style={{ color: activeCategory.color }}
+                        className="text-xs font-bold font-mono transition-colors duration-300"
+                      >
+                        {currentSkill.name}
+                      </span>
+                    </div>
                     <span 
                       style={{
                         backgroundColor: `${activeCategory.color}15`,
                         borderColor: `${activeCategory.color}35`,
                         color: activeCategory.color,
                       }}
-                      className="text-[10px] uppercase font-mono px-2 py-0.5 rounded-full border font-semibold"
+                      className="text-[10px] uppercase font-mono px-2 py-0.5 rounded-full border font-semibold transition-colors duration-300"
                     >
                       {currentSkill.level}
                     </span>
@@ -406,7 +417,6 @@ export default function SkillsConstellation() {
               {/* List of Skills for this category */}
               <div className="mt-5 space-y-2 max-h-[260px] overflow-y-auto pr-1">
                 {skills.map((skill) => {
-                  const SkillIcon = iconMap[skill.icon] || Code;
                   const isSelected = currentSkill?.name === skill.name;
                   return (
                     <div
@@ -428,11 +438,10 @@ export default function SkillsConstellation() {
                           : 'bg-[#0D2933]/50 dark:bg-[#0D2933]/50 light:bg-[#F0FAF9] border-transparent hover:border-[#24505A] dark:hover:border-[#24505A] light:hover:border-[#CDE7E2]'
                       }`}
                     >
-                      <div className="flex items-center gap-2">
-                        <SkillIcon 
-                          size={14} 
-                          style={{ color: activeCategory.color }}
-                        />
+                      <div className="flex items-center gap-2.5">
+                        <div className="w-5 h-5 flex items-center justify-center shrink-0">
+                          <TechLogo name={skill.name} size={15} />
+                        </div>
                         <span className="text-xs font-medium text-[#EAFBFA] dark:text-[#EAFBFA] light:text-[#103039]">
                           {skill.name}
                         </span>
