@@ -251,8 +251,7 @@ export const skillCategories = [
       { name: "LLMs & AI Agents", level: "Advanced", icon: "Bot" },
       { name: "Prompt Engineering", level: "Advanced", icon: "Terminal" },
       { name: "Google Gemini API", level: "Advanced", icon: "Sparkles" },
-      { name: "Pinecone", level: "Proficient", icon: "Database" },
-      { name: "Deep Learning (PyTorch)", level: "Intermediate", icon: "Cpu" },
+      { name: "Pinecone", level: "Proficient", icon: "Database" }
     ],
   },
   {
